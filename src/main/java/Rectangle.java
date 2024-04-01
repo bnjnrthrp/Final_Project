@@ -68,7 +68,7 @@ public class Rectangle extends Shape {
    */
   @Override
   public String toString(){
-    return "%.1fx%d.1fx%.1f (LxWxT)".formatted(this.getLength(), this.getWidth(), this.getThickness());
+    return "%.1fx%.1fx%.1f (LxWxT)".formatted(this.getLength(), this.getWidth(), this.getThickness());
   }
 
 }
