@@ -28,4 +28,5 @@ public abstract class Shape {
   public double getThickness(){
     return this.thickness;
   }
+
 }

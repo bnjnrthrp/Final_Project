@@ -62,5 +62,13 @@ public class Rectangle extends Shape {
     return this.width;
   }
 
+  /**
+   * Prints the dimensions of the rectangle, in the format LxWxT
+   * @return the dimensions
+   */
+  @Override
+  public String toString(){
+    return "%.1fx%d.1fx%.1f (LxWxT)".formatted(this.getLength(), this.getWidth(), this.getThickness());
+  }
 
 }

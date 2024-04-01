@@ -12,7 +12,7 @@ public class Const {
 
   //Standard values
   public static final int VALUE_JIG_CROSSCUT_SLED = 100;
-  public static final int VALUE_JIG_MEASURE_TAPE = 10;
+  public static final int VALUE_JIG_TAPE_MEASURE = 10;
   public static final int VALUE_JIG_CIRCLECUT = 50;
   public static final int VALUE_TOOL_TABLE_SAW = 250;
   public static final int VALUE_TOOL_MITER_SAW = 150;

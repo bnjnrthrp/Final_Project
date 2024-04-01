@@ -23,7 +23,19 @@ public class Round extends Shape {
     }
   }
 
+  /**
+   * Gets the diameter of the round
+   * @return the diameter of this object
+   */
   public double getDiameter(){
     return this.diameter;
+  }
+
+  /**
+   * Gets the dimensions of this object, in the format diameter x thickness
+   * @return The dimensions of this round shape
+   */
+  public String toString(){
+    return "Diameter: %.1f, Thickness: %.1f".formatted(this.getDiameter(), this.getThickness());
   }
 }
