@@ -3,9 +3,10 @@
  * dimensions, and it also contains a type. In future expansion, the type of wood can have an impact
  * on how difficult it is to work with (soft vs hard woods) and what furniture can be made.
  */
-public abstract class Wood extends Shape {
+public abstract class Wood {
   private Shape shape;
   private final WoodType type;
+  boolean smooth = false;
 
   /**
    * Constructor for a piece of wood.
@@ -34,6 +35,10 @@ public abstract class Wood extends Shape {
     return this.shape;
   }
 
+  /**
+   * Adjusts the surface from rough to smooth
+   */
+  public void makeSmooth() {this.smooth = true;}
 
   /**
    * Returns the type and dimensions of this piece of wood.

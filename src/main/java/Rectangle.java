@@ -15,9 +15,9 @@ public class Rectangle extends Shape {
    * @param thickness the thickness of the shape
    */
   public Rectangle (double length, double width, double thickness){
+    super(thickness);
     this.setLength(length);
     this.setWidth(width);
-    this.setThickness(thickness);
   }
 
   /**

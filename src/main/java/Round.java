@@ -6,8 +6,8 @@ public class Round extends Shape {
    * (from Shape)
    */
   public Round(double diameter, double thickness){
+    super(thickness);
     this.setDiameter(diameter);
-    this.setThickness(thickness);
   }
 
   /**
