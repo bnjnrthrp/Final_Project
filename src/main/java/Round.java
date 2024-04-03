@@ -32,9 +32,24 @@ public class Round extends Shape {
   }
 
   /**
-   * Gets the dimensions of this object, in the format diameter x thickness
-   * @return The dimensions of this round shape
+   * Tests for equality
+   * @param obj the object to test
+   * @return true if two objects are equal
    */
+  @Override
+  public boolean equals(Object obj){
+    if (obj == null) return false;
+    if (this == obj) return true;
+    if (!(obj instanceof Round)) return false;
+    Round test = (Round) obj;
+    return this.getDiameter() == test.getDiameter() && this.getThickness() == test.getThickness();
+  }
+
+
+    /**
+     * Gets the dimensions of this object, in the format diameter x thickness
+     * @return The dimensions of this round shape
+     */
   public String toString(){
     return "Diameter: %.1f, Thickness: %.1f".formatted(this.getDiameter(), this.getThickness());
   }

@@ -6,30 +6,31 @@
  */
 
 public abstract class Shape {
-  protected double thickness;
+  protected double[] dimensions;
 
-  Shape(double thickness){
-    this.setThickness(thickness);
-  }
   /**
-   * Sets the thickness of the rectangle
-   * @param thickness the thickness of the shape
-   * @throws IllegalArgumentException for thickness <= 0
+   * Sets the dimensions of the shape
+   * @param dimensions the dimensions of the shape
+   * @throws IllegalArgumentException for any dimension <= 0
    */
-  private void setThickness(double thickness) throws IllegalArgumentException{
-    if (thickness <= 0){
-      throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_MEASUREMENT);
-    } else {
-      this.thickness = thickness;
+  private void setDimensions(double[] dimensions) throws IllegalArgumentException{
+    // Check if any of the dimensions are invalid
+    for (double dim : dimensions) {
+      if (dim <= 0){
+        throw new IllegalArgumentException(Const.ERROR_INVALID_SIZE);
+      }
     }
+    // Otherwise set the dimensions.
+    this.dimensions = dimensions;
+
   }
 
   /**
    * Gets the thickness of this rectangle
    * @return the thickness
    */
-  public double getThickness(){
-    return this.thickness;
+  public double[] getDimensions(){
+    return this.dimensions;
   }
 
 }

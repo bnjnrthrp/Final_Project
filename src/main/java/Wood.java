@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Wood implements iCuttable<Wood>{
   private Shape shape;
   private final WoodType type;
-  boolean smooth = false;
+  private boolean smooth = false;
 
   /**
    * Constructor for a piece of wood.
@@ -42,11 +42,23 @@ public abstract class Wood implements iCuttable<Wood>{
    */
   public void makeSmooth() {this.smooth = true;}
 
+  public boolean isSmooth() {return this.smooth;}
+
   public ArrayList<Wood> cut(double size, boolean accurate){
     Wood piece1;
     Wood piece2;
 
     return null;
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    if (obj == null || this.getClass() != obj.getClass()) return false;
+    if (this == obj) return true;
+    if (!(obj instanceof Wood)) return false;
+    Wood test = (Wood) obj;
+    return this.getShape().equals(test.getShape()) && this.getType() == test.getType() && this.isSmooth() == test.isSmooth();
+
   }
 
   /**

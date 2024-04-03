@@ -124,4 +124,20 @@ private enum Side {length, width}
     return "%.1fx%.1fx%.1f (LxWxT)".formatted(this.getLength(), this.getWidth(), this.getThickness());
   }
 
+  /**
+   * Tests for equality
+   * @param obj the object to test
+   * @return true if two objects are equal
+   */
+  @Override
+  public boolean equals(Object obj){
+    if (obj == null) return false;
+    if (this == obj) return true;
+    if (!(obj instanceof Rectangle)) return false;
+    Rectangle test = (Rectangle) obj;
+    return this.getWidth() == test.getWidth() && this.getLength() == test.getLength() && this.getThickness() == test.getThickness();
+
+  }
+
+
 }
