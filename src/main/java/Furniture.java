@@ -1,5 +1,8 @@
-/**
- * This enum contains the various names of furniture that may be built
- */
+import java.util.ArrayList;
 
-public enum Furniture {SmallStool, Chair, Table}
+/** This enum contains the various names of furniture that may be built */
+public enum Furniture {
+  SmallStool,
+  Chair,
+  Table;
+}

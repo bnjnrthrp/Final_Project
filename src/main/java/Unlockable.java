@@ -6,7 +6,12 @@ public abstract class Unlockable {
     this.setValue(value);
   }
 
-  private void setValue(int value){
+  /**
+   * Sets the value of the object.
+   * @param value the value to set the object to
+   * @throws IllegalArgumentException if the value <= 0
+   */
+  private void setValue(int value) throws IllegalArgumentException{
     if (value <= 0) {
       throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
     } else {

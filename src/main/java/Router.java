@@ -6,19 +6,19 @@
 
 import java.util.List;
 
-public class Router extends Tool implements CuttingTool{
+public class Router extends Tool implements iCuttingTool {
 
   public Router(){
     super(Const.VALUE_TOOL_ROUTER);
   }
 
   @Override
-  public List<Wood> cut(Wood wood) {
+  public List<Wood> cut(Wood wood, double size) {
     return null;
   }
 
   @Override
-  public List<Wood> cut(Wood wood, Jig jig) {
+  public List<Wood> cut(Wood wood, double size, Jig jig) {
     return null;
   }
 }

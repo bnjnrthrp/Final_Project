@@ -2,6 +2,7 @@ public class Const {
   //Errors
   public static final String ERROR_NON_POSITIVE_MEASUREMENT = "Measurement cannot be negative.";
   public static final String ERROR_NON_POSITIVE_VALUE = "Value cannot be negative.";
+  public static final String ERROR_INVALID_SIZE = "Measurement must be greater than 0 and less than the measurement of the board";
 
   //Standard Dimensions
   public static final double LENGTH_PLYWOOD = 96;

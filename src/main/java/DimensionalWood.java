@@ -7,4 +7,7 @@ public class DimensionalWood extends Wood {
         new Rectangle(Const.LENGTH_DIMENSIONAL, Const.WIDTH_DIMENSIONAL, Const.THICKNESS_DIMENSIONAL),
         WoodType.dimensional);
   }
+  public DimensionalWood(double length, double width, double thickness){
+    super(new Rectangle(length, width, thickness), WoodType.dimensional);
+  }
 }
