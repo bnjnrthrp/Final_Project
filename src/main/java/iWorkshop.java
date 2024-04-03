@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface iWorkshop {
 
   /** Go to work to get money for the account */
-  public int goToWork();
+  public void goToWork();
 
   /**
    * Loads the workshop, initializes all the tools, jigs, and locks them so they can later be

@@ -4,10 +4,6 @@
  * (from Shape)
  */
 public class Rectangle extends Shape {
-  private double length;
-  private double width;
-
-private enum Side {length, width}
 
   /**
    * Constructor for a rectangle. Takes a length, width, and thickness
@@ -16,9 +12,8 @@ private enum Side {length, width}
    * @param thickness the thickness of the shape
    */
   public Rectangle (double length, double width, double thickness){
-    super(thickness);
-    this.setLength(length);
-    this.setWidth(width);
+    double[] dimensions = {length, width, thickness};
+    setDimensions(dimensions);
   }
 
   /**
@@ -27,11 +22,7 @@ private enum Side {length, width}
    * @throws IllegalArgumentException for length <= 0
    */
   private void setLength(double length) throws IllegalArgumentException{
-    if (length <= 0) {
-      throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_MEASUREMENT);
-    } else {
-      this.length = length;
-    }
+    setSingleDimension(0, length);
   }
 
   /**
@@ -40,11 +31,16 @@ private enum Side {length, width}
    * @throws IllegalArgumentException for width <= 0
    */
   private void setWidth(double width) throws IllegalArgumentException{
-    if (width <= 0) {
-      throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_MEASUREMENT);
-    } else {
-      this.width = width;
-    }
+    setSingleDimension(1, width);
+  }
+
+  /**
+   * Sets the thickness of the rectangle
+   * @param thickness the width of the shape
+   * @throws IllegalArgumentException for thickness <= 0
+   */
+  private void setThickness(double thickness) throws IllegalArgumentException {
+    setSingleDimension(2, thickness);
   }
 
   /**
@@ -52,7 +48,7 @@ private enum Side {length, width}
    * @return the length
    */
   public double getLength(){
-    return this.length;
+    return this.getSingleDimension(0);
   }
 
   /**
@@ -60,8 +56,17 @@ private enum Side {length, width}
    * @return the width
    */
   public double getWidth(){
-    return this.width;
+    return this.getSingleDimension(1);
   }
+
+  /**
+   * Gets the thickness of this rectangle
+   * @return the thickness
+   */
+  public double getThickness(){
+    return this.getSingleDimension(2);
+  }
+
 
   /**
    * Helper function to adjust the size of a rectangle
