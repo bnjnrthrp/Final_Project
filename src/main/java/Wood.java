@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.ArrayList;
 
 /**
@@ -42,14 +43,13 @@ public abstract class Wood implements iCuttable<Wood>{
    */
   public void makeSmooth() {this.smooth = true;}
 
+  /**
+   * getter for is smooth instance variable
+   * @return boolean, true if the edge is smooth
+   */
   public boolean isSmooth() {return this.smooth;}
 
-  public ArrayList<Wood> cut(double size, boolean accurate){
-    Wood piece1;
-    Wood piece2;
-
-    return null;
-  }
+  public abstract ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate);
 
   @Override
   public boolean equals(Object obj){
@@ -58,7 +58,6 @@ public abstract class Wood implements iCuttable<Wood>{
     if (!(obj instanceof Wood)) return false;
     Wood test = (Wood) obj;
     return this.getShape().equals(test.getShape()) && this.getType() == test.getType() && this.isSmooth() == test.isSmooth();
-
   }
 
   /**

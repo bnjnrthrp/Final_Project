@@ -1,5 +1,5 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public interface iCuttable<T> {
-  List<T> cut(double size, boolean accurate);
+  ArrayList<T> cut(int sideIndex, double newDimension, boolean accurate);
 }
