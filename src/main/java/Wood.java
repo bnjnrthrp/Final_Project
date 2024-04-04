@@ -7,9 +7,13 @@ import java.util.ArrayList;
  * on how difficult it is to work with (soft vs hard woods) and what furniture can be made.
  */
 public abstract class Wood implements iCuttable<Wood>{
-  private Shape shape;
-  private final WoodType type;
-  private boolean smooth = false;
+  protected Shape shape;
+  protected final WoodType type;
+  protected boolean smooth = false;
+
+  public Wood(WoodType type){
+    this.type = type;
+  }
 
   /**
    * Constructor for a piece of wood.

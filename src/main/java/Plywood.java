@@ -15,9 +15,24 @@ public class Plywood extends Wood implements iCuttable<Wood>, Cloneable{
   }
 
   public Plywood(double[] dimensions){
-    super(new Rectangle(dimensions[0], dimensions[1], dimensions[2]), WoodType.plywood);
+    super(WoodType.plywood);
+
+    if (dimensions.length == 3){
+    this.shape = new Rectangle(dimensions[0], dimensions[1], dimensions[2]);
+    } else {
+    this.shape = new Round(dimensions[0], dimensions[1]);
+
+    }
   }
 
+  /**
+   * Helper function to cut a Rectangle piece of Wood out of the original wood
+   * @param sideIndex the dimension index we are adjusting
+   * @param newDimension the new size of that dimension
+   * @param accurate determines if accurate cut or not
+   * @return the completed piece of wood
+   * @throws IllegalStateException if the new dimension exceeds the original piece of wood
+   */
   private ArrayList<Wood> cutRectangle(int sideIndex, double newDimension, boolean accurate){
     // Get data from original and store as temp
     double[] dimensions = this.getShape().getDimensions();
@@ -44,16 +59,53 @@ public class Plywood extends Wood implements iCuttable<Wood>, Cloneable{
     return pieces;
   }
 
-  // TODO: Move to saw and fix
+  /**
+   * Helper function to cut a round Wood out of the original wood
+   * @param sideIndex the dimension index we are adjusting
+   * @param newDimension the new size of that dimension
+   * @param accurate determines if accurate cut or not
+   * @return the completed piece of wood
+   * @throws IllegalStateException if the diameter of the round exceeds either length or width of
+   * the original piece of wood
+   */
+  private ArrayList<Wood> cutRound(int sideIndex, double newDimension, boolean accurate) throws IllegalStateException{
+    ArrayList<Wood> piece = new ArrayList<>();
+    double[] dimensions = this.getShape().getDimensions();
+    // If the shape was already round, just cut to new size
+    if (this.getShape() instanceof Round){
+      this.getShape().setSingleDimension(sideIndex, newDimension);
+      piece.addFirst(this);
+    } else {
+      // else ensure the new Dimension (new diameter) won't exceed either the original width or length
+      // of the first bit. You can't make a diameter of 4 if the original rectangle is 4x3
+      // else change shape from rectangle to round
+      if (newDimension > dimensions[0] || newDimension > dimensions[1]){
+        piece.addFirst(this); // For now, change nothing and add to the list
+      } else {
+        double[] newDims = {newDimension, dimensions[2]}; // Make a new diameter, and take old thickness
+        Plywood newPiece = new Plywood(newDims);
+        piece.addFirst(newPiece);
+      }
+    }
+    return piece;
+  }
+
+  /**
+   * Resizes (or reshape) the wood into one with new dimensions. If cutting rectangle -> rectangle,
+   * you'll get two pieces that together add up to the original size. If cutting rectangle -> round,
+   * you'll only receive the round.
+   * @param sideIndex the dimension index we are cutting
+   * @param newDimension the new size
+   * @param accurate true if the cut is accurate
+   * @return an ArrayList with one or two pieces of wood in it.
+   */
   @Override
   public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate) {
     // For a rectangular piece
-    if (this.getShape().getClass() == Rectangle.class) {
+    if (this.getShape() instanceof Rectangle) {
       return cutRectangle(sideIndex, newDimension, accurate);
     }
-    //TODO: Implement cut circle
-    return null;
-    //
+    return cutRound(sideIndex, newDimension, accurate); // Implied else
   }
 
 }
