@@ -15,8 +15,8 @@ public class DimensionalWood extends Wood {
 
   /**
    * Constructor for a piece of dimensional wood with provided arguments.
-   * @param dimensions
-   * @throws IllegalArgumentException
+   * @param dimensions the dimensions of the wood
+   * @throws IllegalArgumentException if there are an incorrect number of dimensions
    */
   public DimensionalWood(double[] dimensions) throws IllegalArgumentException {
     super(WoodType.dimensional);
@@ -71,7 +71,7 @@ public class DimensionalWood extends Wood {
    * @return an ArrayList with one or two pieces of wood in it.
    */
   @Override
-  public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate) {
+  public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape cutType) {
     return cutRectangle(sideIndex, newDimension, accurate);
   }
 }

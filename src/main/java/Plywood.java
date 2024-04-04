@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Plywood extends Wood implements iCuttable<Wood>, Cloneable{
+public class Plywood extends Wood implements iCuttable<Wood> {
 
   /**
    * Constructor for a piece of plywood. Standard size is found in the Const class
@@ -14,6 +14,10 @@ public class Plywood extends Wood implements iCuttable<Wood>, Cloneable{
         WoodType.plywood);
   }
 
+  /**
+   * Constructor for a piece of plywood using provided dimensions.
+   * @param dimensions the dimensions to apply
+   */
   public Plywood(double[] dimensions){
     super(WoodType.plywood);
 
@@ -100,9 +104,9 @@ public class Plywood extends Wood implements iCuttable<Wood>, Cloneable{
    * @return an ArrayList with one or two pieces of wood in it.
    */
   @Override
-  public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate) {
+  public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape shape) {
     // For a rectangular piece
-    if (this.getShape() instanceof Rectangle) {
+    if (shape == cutShape.rectToRect){
       return cutRectangle(sideIndex, newDimension, accurate);
     }
     return cutRound(sideIndex, newDimension, accurate); // Implied else
