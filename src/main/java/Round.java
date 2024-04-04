@@ -1,13 +1,13 @@
 public class Round extends Shape {
-  private double diameter;
+
 
   /**
    * This class represents a round shape, like a circle. It has a diameter and thickness
    * (from Shape)
    */
   public Round(double diameter, double thickness){
-    super(thickness);
-    this.setDiameter(diameter);
+    double[] dimensions = {diameter, thickness};
+    this.setDimensions(dimensions);
   }
 
   /**
@@ -15,12 +15,17 @@ public class Round extends Shape {
    * @param diameter the diameter
    * @throws IllegalArgumentException for diameters <= 0
    */
-  private void setDiameter(double diameter) throws IllegalArgumentException {
-    if (diameter <= 0) {
-      throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_MEASUREMENT);
-    } else {
-      this.diameter = diameter;
-    }
+  public void setDiameter(double diameter) throws IllegalArgumentException, IndexOutOfBoundsException, IllegalStateException {
+    setSingleDimension(0, diameter);
+  }
+
+  /**
+   * Sets the thickness of the round
+   * @param thickness the width of the shape
+   * @throws IllegalArgumentException for thickness <= 0
+   */
+  public void setThickness(double thickness) throws IllegalArgumentException, IndexOutOfBoundsException, IllegalStateException {
+    setSingleDimension(1, thickness);
   }
 
   /**
@@ -28,8 +33,16 @@ public class Round extends Shape {
    * @return the diameter of this object
    */
   public double getDiameter(){
-    return this.diameter;
+    return this.getSingleDimension(0);
   }
+
+  /**
+   * Gets the thickness of the round
+   * @return the thickness of this object
+   */
+  public double getThickness() {return this.getSingleDimension(1);}
+
+  //TODO: getHash override
 
   /**
    * Tests for equality

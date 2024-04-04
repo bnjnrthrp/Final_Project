@@ -21,7 +21,7 @@ public class Rectangle extends Shape {
    * @param length the length of the shape
    * @throws IllegalArgumentException for length <= 0
    */
-  private void setLength(double length) throws IllegalArgumentException{
+  public void setLength(double length) throws IllegalArgumentException, IndexOutOfBoundsException, IllegalStateException{
     setSingleDimension(0, length);
   }
 
@@ -30,7 +30,7 @@ public class Rectangle extends Shape {
    * @param width the width of the shape
    * @throws IllegalArgumentException for width <= 0
    */
-  private void setWidth(double width) throws IllegalArgumentException{
+  public void setWidth(double width) throws IllegalArgumentException, IndexOutOfBoundsException, IllegalStateException{
     setSingleDimension(1, width);
   }
 
@@ -39,7 +39,7 @@ public class Rectangle extends Shape {
    * @param thickness the width of the shape
    * @throws IllegalArgumentException for thickness <= 0
    */
-  private void setThickness(double thickness) throws IllegalArgumentException {
+  public void setThickness(double thickness) throws IllegalArgumentException, IndexOutOfBoundsException, IllegalStateException {
     setSingleDimension(2, thickness);
   }
 
@@ -69,64 +69,12 @@ public class Rectangle extends Shape {
 
 
   /**
-   * Helper function to adjust the size of a rectangle
-   * @param newSize the new measurement desired
-   * @param side the side to adjust
-   * @return 1 if the resize was successful, 0 if the original size was the same as the new size
-   * @throws IllegalArgumentException if the new size exceeds the length of the shape or is less than 0
-   */
-  private int adjustSize(double newSize, Side side) throws IllegalArgumentException{
-    double current;
-    if (side == Side.length){
-      current = this.getLength();
-      if (newSize > current || newSize <= 0){
-        throw new IllegalArgumentException(Const.ERROR_INVALID_SIZE);
-      } else if (newSize == current){
-        return 0;
-      } else {
-        setLength(newSize);
-        return 1;
-      }
-    } else {
-      current = this.getWidth();
-      if (newSize > current || newSize <= 0){
-        throw new IllegalArgumentException(Const.ERROR_INVALID_SIZE);
-      } else if (newSize == current){
-        return 0;
-      } else {
-        setWidth(newSize);
-        return 1;
-      }
-    }
-  }
-
-  /**
-   * Adjusts the length of a rectangle to a new desired length
-   * @param newLength the new desired length
-   * @return 1 if successful, 0 if the same
-   * @throws IllegalArgumentException if the new size exceeds the length of the shape or is less than 0
-   */
-  public int adjustLength(double newLength) throws IllegalArgumentException{
-    return adjustSize(newLength, Side.length);
-  }
-
-  /**
-   * Adjusts the width of a rectangle to a new desired width
-   * @param newWidth the new desired width
-   * @return 1 if successful, 0 if there was no change
-   * @throws IllegalArgumentException if the new size exceeds the length of the shape or is less than 0
-   */
-  public int adjustWidth(double newWidth) throws IllegalArgumentException{
-    return adjustSize(newWidth, Side.width);
-  }
-
-  /**
    * Prints the dimensions of the rectangle, in the format LxWxT
    * @return the dimensions
    */
   @Override
   public String toString(){
-    return "%.1fx%.1fx%.1f (LxWxT)".formatted(this.getLength(), this.getWidth(), this.getThickness());
+    return "Length: %.1f, Width: %.1f, Thickness: %.1f".formatted(this.getLength(), this.getWidth(), this.getThickness());
   }
 
   /**

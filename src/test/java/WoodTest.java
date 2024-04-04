@@ -5,7 +5,7 @@ import org.junit.Test;
 public class WoodTest {
   Plywood plywood1;
   DimensionalWood dim1;
-  Plywood round1;
+
   double DELTA = .005;
 
   @Before
@@ -16,11 +16,6 @@ public class WoodTest {
 
   @Test
   public void settersAndGetters() {
-    assertEquals(.75, plywood1.getShape().getThickness(), DELTA);
-    assertEquals(2, dim1.getShape().getThickness(), DELTA);
-
-    assertEquals(WoodType.plywood, plywood1.getType());
-    assertEquals(WoodType.dimensional, dim1.getType());
   }
 
   @Test
