@@ -1,5 +1,4 @@
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -39,11 +38,20 @@ public class MiterSawTest {
   }
 
   @Test
-  public void cut() {
-    miterSaw.cut(inventory.get(1), 48.0);
+  public void testCut() {
+    ArrayList<Wood> actual = new ArrayList<>();
+    double[] param1 = {49, 4, 2};
+    double[] param2 = {47, 4, 2};
+    DimensionalWood expected1 = new DimensionalWood(param1);
+    DimensionalWood expected2 = new DimensionalWood(param2);
+    actual.addAll(miterSaw.cut(inventory.get(1), 49.0));
 
+    assertEquals(expected1, actual.get(0));
+    assertEquals(expected2, actual.get(1));
   }
 
-  @Test
-  public void testCut() {}
+  @Test (expected=IllegalArgumentException.class)
+  public void testCutTooWide() {
+    miterSaw.cut(inventory.get(0), 30);
+  }
 }

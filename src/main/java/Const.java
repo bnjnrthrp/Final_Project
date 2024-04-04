@@ -6,6 +6,7 @@ public class Const {
   public static final String ERROR_INVALID_INDEX = "Index provided is outside range of array";
   public static final String ERROR_DIMENSION_OOB = "New dimension cannot be larger than the original";
   public static final String ERROR_INSUFFICIENT_ARGS = "Not enough dimensions to create object";
+  public static final String ERROR_INCOMPATIBLE_CUTTABLE_SHAPE = "Cannot cut this shape on this tool";
 
   //Standard Dimensions
   public static final double LENGTH_PLYWOOD = 96;
