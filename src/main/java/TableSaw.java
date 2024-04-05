@@ -8,11 +8,22 @@ public class TableSaw extends Tool implements iCuttingTool {
 
   @Override
   public List<Wood> cut(Wood wood, double size) {
-    return null;
+    if (!(wood.getShape() instanceof Rectangle)){
+      // Throws error, since you can't cut non-retangles on a miter saw
+      throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_CUTTABLE_SHAPE);
+    }
+    return wood.cut(0, size, true, cutShape.rectToRect);
   }
 
   @Override
   public List<Wood> cut(Wood wood, double size, Jig jig) {
-    return null;
+    // Throw error if not a rectangle
+    if (!(wood.getShape() instanceof Rectangle)){
+      throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_CUTTABLE_SHAPE);
+    } else if (jig != Jig.crossCutSled){
+      throw new IllegalStateException(Const.ERROR_INCOMPATIBLE_JIG);
+    }
+    // Throw error if incompatible jig
+    return wood.cut(1, size, true, cutShape.rectToRect);
   }
 }

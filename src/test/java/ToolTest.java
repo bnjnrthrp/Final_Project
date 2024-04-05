@@ -21,10 +21,7 @@ public class ToolTest {
   @Before
   public void setUp() {
     tableSaw = new TableSaw();
-
     router = new Router();
-
-
 
     inventory = new ArrayList<>();
     ply1 = new Plywood();
