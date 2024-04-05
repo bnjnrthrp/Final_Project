@@ -41,6 +41,7 @@ public class Router extends Tool implements iCuttingTool{
    * @throws IllegalStateException if the diameter is larger than the length or width of the original
    * piece of wood
    */
+  @Override
   public ArrayList<Wood> cut(Wood wood, double size, Jig jig) throws IllegalStateException{
     if (jig != Jig.circleCut){
       throw new IllegalStateException(Const.ERROR_INCOMPATIBLE_JIG);

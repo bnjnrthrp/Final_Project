@@ -8,7 +8,9 @@ import org.junit.Test;
 public class ToolTest {
 
   TableSaw tableSaw;
+  MiterSaw miterSaw;
   Router router;
+  ArrayList<Tool> toolInventory;
 
 
   List<Wood> inventory;
@@ -18,7 +20,13 @@ public class ToolTest {
   @Before
   public void setUp() {
     tableSaw = new TableSaw();
+    miterSaw = new MiterSaw();
     router = new Router();
+
+    toolInventory = new ArrayList<>();
+    toolInventory.add(tableSaw);
+    toolInventory.add(miterSaw);
+    toolInventory.add(router);
 
     inventory = new ArrayList<>();
     ply1 = new Plywood();
@@ -49,6 +57,11 @@ public class ToolTest {
     assertTrue(tableSaw.isUnlocked());
     }
 
+  @Test
+  public void testToString(){
+    String expected = "Tool: TableSaw, Value: 250, Unlocked: false";
 
+    assertEquals(expected, toolInventory.getFirst().toString());
+  }
 
 }

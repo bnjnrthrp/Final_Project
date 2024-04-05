@@ -7,4 +7,8 @@ public abstract class Tool extends Unlockable{
   public Tool(int value){
     super(value);
   };
+  @Override
+  public String toString(){
+    return "Tool: %s, Value: %d, Unlocked: %b".formatted(this.getClass().getSimpleName(), this.getValue(), this.isUnlocked());
+  }
 }
