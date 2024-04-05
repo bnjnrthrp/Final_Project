@@ -4,21 +4,26 @@
  * jig is used, it will simply smooth the edges of the wood
  */
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class Router extends Tool implements iCuttingTool {
+
+public class Router extends Tool {
 
   public Router(){
     super(Const.VALUE_TOOL_ROUTER);
   }
 
-  @Override
-  public List<Wood> cut(Wood wood, double size) {
-    return null;
+  public ArrayList<Wood> smooth(Wood wood) {
+    ArrayList<Wood> piece = new ArrayList<>();
+    wood.makeSmooth();
+    piece.add(wood);
+    return piece;
   }
 
-  @Override
-  public List<Wood> cut(Wood wood, double size, Jig jig) {
-    return null;
+
+  public ArrayList<Wood> cut(Plywood wood, double size, Jig jig) {
+    return wood.cut(0, size, true, cutShape.rectToRound);
+
+
   }
 }

@@ -59,6 +59,9 @@ public class MiterSawTest {
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
     ArrayList<Wood> actual = new ArrayList<>(miterSaw.cut(inventory.get(1), inventory.get(2)));
+
+    assertEquals(expected1, actual.getFirst());
+    assertEquals(expected2, actual.get(1));
   }
 
   @Test (expected=IllegalArgumentException.class)

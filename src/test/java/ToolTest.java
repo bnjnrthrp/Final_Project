@@ -7,11 +7,8 @@ import org.junit.Test;
 
 public class ToolTest {
 
-  Tool tableSaw;
-
-  Tool router;
-  Jig crossCutSled;
-  Jig circleCut;
+  TableSaw tableSaw;
+  Router router;
 
 
   List<Wood> inventory;

@@ -10,8 +10,8 @@ import org.junit.Test;
 public class TableSawTest {
   TableSaw tableSaw;
   List<Wood> inventory;
-  Wood ply1;
-  Wood dim1;
+  Plywood ply1;
+  DimensionalWood dim1;
 
   @Before
   public void setUp() {
@@ -43,8 +43,7 @@ public class TableSawTest {
     double[] param2 = {47, 48, .75};
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
-    ArrayList<Wood> actual =
-        new ArrayList<>(tableSaw.cut(inventory.getFirst(), 49.0));
+    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), 49.0);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
@@ -56,8 +55,7 @@ public class TableSawTest {
     double[] param2 = {96, 18, .75};
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
-    ArrayList<Wood> actual =
-        new ArrayList<>(tableSaw.cut(inventory.getFirst(), 30.0, Jig.crossCutSled));
+    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), 30.0, Jig.crossCutSled);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));

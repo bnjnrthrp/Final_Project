@@ -84,7 +84,7 @@ public class Plywood extends Wood implements iCuttable<Wood> {
       // of the first bit. You can't make a diameter of 4 if the original rectangle is 4x3
       // else change shape from rectangle to round
       if (newDimension > dimensions[0] || newDimension > dimensions[1]){
-        piece.addFirst(this); // For now, change nothing and add to the list
+        throw new IllegalStateException(Const.ERROR_DIMENSION_OOB); // For now, change nothing and add to the list
       } else {
         double[] newDims = {newDimension, dimensions[2]}; // Make a new diameter, and take old thickness
         Plywood newPiece = new Plywood(newDims);
