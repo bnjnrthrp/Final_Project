@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -41,7 +40,7 @@ public class RouterTest {
     // wood starts rough
     assertFalse(ply1.isSmooth());
 
-    router.smooth(ply1);
+    router.cut(ply1, 40);
     assertTrue(ply1.isSmooth());
   }
 
@@ -49,10 +48,21 @@ public class RouterTest {
   public void testCutWithJig() {
     // Initialize the expected
     double[] dims = {36, .75};
+    double[] dims2 = {3.5, 2};
+
+    // Test plywood
     Plywood expected = new Plywood(dims);
     expected.makeSmooth();
     ArrayList<Wood> actual = new ArrayList<>(router.cut(ply1, 36, Jig.circleCut));
     assertEquals(expected, actual.getFirst());
+
+    // Test dimensional wood
+    DimensionalWood expected2 = new DimensionalWood(dims2);
+    expected2.makeSmooth();
+    ArrayList<Wood> actual2 = new ArrayList<>(router.cut(dim1, 3.5, Jig.circleCut));
+    assertEquals(expected2, actual2.getFirst());
+
+
   }
 
   @Test(expected = IllegalStateException.class)

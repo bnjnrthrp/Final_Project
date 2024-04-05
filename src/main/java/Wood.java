@@ -34,6 +34,10 @@ public abstract class Wood implements iCuttable<Wood>{
     return this.type;
   }
 
+  public void setShape(Shape shape){
+    this.shape = shape;
+  }
+
   /**
    * Getter for the Shape
    * @return this object's WoodType

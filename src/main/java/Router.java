@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * This class represents a Router, which will smooth the edges if used by itself, or can cut
  * plywood into circles using a circle cut jig.
  */
-public class Router extends Tool {
+public class Router extends Tool implements iCuttingTool{
 
   /**
    * Constructor for a router.
@@ -24,7 +24,8 @@ public class Router extends Tool {
    * @param wood the wood to be smoothed
    * @return an ArrayList of size 1, with the piece of wood.
    */
-  public ArrayList<Wood> smooth(Wood wood) {
+  @Override
+  public ArrayList<Wood> cut(Wood wood, double size) {
     ArrayList<Wood> piece = new ArrayList<>();
     wood.makeSmooth();
     piece.add(wood);
@@ -40,7 +41,7 @@ public class Router extends Tool {
    * @throws IllegalStateException if the diameter is larger than the length or width of the original
    * piece of wood
    */
-  public ArrayList<Wood> cut(Plywood wood, double size, Jig jig) throws IllegalStateException{
+  public ArrayList<Wood> cut(Wood wood, double size, Jig jig) throws IllegalStateException{
     if (jig != Jig.circleCut){
       throw new IllegalStateException(Const.ERROR_INCOMPATIBLE_JIG);
     }
