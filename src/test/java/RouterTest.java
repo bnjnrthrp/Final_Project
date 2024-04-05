@@ -50,8 +50,8 @@ public class RouterTest {
     // Initialize the expected
     double[] dims = {36, .75};
     Plywood expected = new Plywood(dims);
+    expected.makeSmooth();
     ArrayList<Wood> actual = new ArrayList<>(router.cut(ply1, 36, Jig.circleCut));
-
     assertEquals(expected, actual.getFirst());
   }
 
