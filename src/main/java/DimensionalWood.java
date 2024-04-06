@@ -1,7 +1,3 @@
-import java.awt.Dimension;
-import java.security.DigestException;
-import java.util.ArrayList;
-
 public class DimensionalWood extends Wood {
 
   /**
@@ -35,13 +31,13 @@ public class DimensionalWood extends Wood {
    * @return the completed piece of wood
    * @throws IllegalStateException if the new dimension exceeds the original piece of wood
    */
-  private ArrayList<Wood> cutRectangle(int sideIndex, double newDimension, boolean accurate){
+  private ADTList<Wood> cutRectangle(int sideIndex, double newDimension, boolean accurate){
     // Get data from original and store as temp
     double[] dimensions = this.getShape().getDimensions();
     // Create a copy of the original board
     DimensionalWood newPiece = new DimensionalWood(dimensions);
     // Insert the original piece into the front
-    ArrayList<Wood> pieces = new ArrayList<>();
+    ADTList<Wood> pieces = new ADTList<>();
     pieces.add(this);
 
     // Try to cut the first board to size.
@@ -57,7 +53,7 @@ public class DimensionalWood extends Wood {
     // Adjust the size of the newPiece to complement the original
     newPiece.getShape().setSingleDimension(sideIndex, originalSize - newDimension);
 
-    // Add to the ArrayList and return it.
+    // Add to the ADTList and return it.
     pieces.add(newPiece);
     return pieces;
   }
@@ -71,13 +67,13 @@ public class DimensionalWood extends Wood {
    * @throws IllegalStateException if the diameter of the round exceeds either length or width of
    * the original piece of wood
    */
-  private ArrayList<Wood> cutRound(int sideIndex, double newDimension, boolean accurate) throws IllegalStateException{
-    ArrayList<Wood> piece = new ArrayList<>();
+  private ADTList<Wood> cutRound(int sideIndex, double newDimension, boolean accurate) throws IllegalStateException{
+    ADTList<Wood> piece = new ADTList<>();
     double[] dimensions = this.getShape().getDimensions();
     // If the shape was already round, just cut to new size
     if (this.getShape() instanceof Round){
       this.getShape().setSingleDimension(sideIndex, newDimension);
-      piece.addFirst(this);
+      piece.add(this, 0);
     } else {
       // else ensure the new Dimension (new diameter) won't exceed either the original width or length
       // of the first bit. You can't make a diameter of 4 if the original rectangle is 4x3
@@ -87,7 +83,7 @@ public class DimensionalWood extends Wood {
       } else {
         double[] newDims = {newDimension, dimensions[2]}; // Make a new diameter, and take old thickness
         this.setShape(new Round(newDimension, dimensions[2]));
-        piece.addFirst(this);
+        piece.add(this, 0);
       }
     }
     return piece;
@@ -100,10 +96,10 @@ public class DimensionalWood extends Wood {
    * @param sideIndex the dimension index we are cutting
    * @param newDimension the new size
    * @param accurate true if the cut is accurate
-   * @return an ArrayList with one or two pieces of wood in it.
+   * @return an ADTList with one or two pieces of wood in it.
    */
   @Override
-  public ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape shape) {
+  public ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape shape) {
     // For a rectangular piece
     if (shape == cutShape.rectToRect){
       return cutRectangle(sideIndex, newDimension, accurate);

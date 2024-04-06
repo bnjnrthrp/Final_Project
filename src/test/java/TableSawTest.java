@@ -2,21 +2,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class TableSawTest {
   TableSaw tableSaw;
-  List<Wood> inventory;
+  ADTList<Wood> inventory;
   Plywood ply1;
   DimensionalWood dim1;
 
   @Before
   public void setUp() {
     tableSaw = new TableSaw();
-    inventory = new ArrayList<>();
+    inventory = new ADTList<>();
     ply1 = new Plywood();
     dim1 = new DimensionalWood();
 
@@ -44,7 +43,7 @@ public class TableSawTest {
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
     tableSaw.unlock();
-    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), 30.0);
+    ADTList<Wood> actual = tableSaw.cut(inventory.get(0), 30.0);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
@@ -58,7 +57,7 @@ public class TableSawTest {
     Jig.crossCutSled.unlock();
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
-    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), Jig.crossCutSled, 49.0);
+    ADTList<Wood> actual = tableSaw.cut(inventory.get(0), Jig.crossCutSled, 49.0);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
@@ -74,7 +73,7 @@ public class TableSawTest {
     Plywood expected = new Plywood(dims2);
     Plywood expected2 = new Plywood(dims3);
     tableSaw.unlock();
-    ArrayList<Wood> actual = tableSaw.cut(ply3, 16);
+    ADTList<Wood> actual = tableSaw.cut(ply3, 16);
 
     assertEquals(expected, actual.get(0));
     assertEquals(expected2, actual.get(1));

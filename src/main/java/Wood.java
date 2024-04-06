@@ -1,6 +1,3 @@
-import java.sql.Array;
-import java.util.ArrayList;
-
 /**
  * This class represents wood to be used for carpentry. It has a shape, which contains its
  * dimensions, and it also contains a type. In future expansion, the type of wood can have an impact
@@ -57,7 +54,7 @@ public abstract class Wood implements iCuttable<Wood>{
    */
   public boolean isSmooth() {return this.smooth;}
 
-  public abstract ArrayList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape cutType);
+  public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape cutType);
 
   @Override
   public boolean equals(Object obj){
@@ -74,6 +71,6 @@ public abstract class Wood implements iCuttable<Wood>{
    */
   @Override
   public String toString(){
-    return "Type: %s, Dimensions: %s".formatted(this.getType(), this.getShape().toString());
+    return "Type: %s, %s".formatted(this.getType(), this.getShape().toString());
   }
 }

@@ -1,20 +1,19 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class RouterTest {
 
   Router router;
-  List<Wood> inventory;
+  ADTList<Wood> inventory;
   Plywood ply1;
   DimensionalWood dim1;
   @Before
   public void setUp() throws Exception {
     router = new Router();
-    inventory = new ArrayList<>();
+    inventory = new ADTList<>();
     ply1 = new Plywood();
     dim1 = new DimensionalWood();
 
@@ -53,14 +52,14 @@ public class RouterTest {
     // Test plywood
     Plywood expected = new Plywood(dims);
     expected.makeSmooth();
-    ArrayList<Wood> actual = new ArrayList<>(router.cut(ply1, Jig.circleCut, 36));
-    assertEquals(expected, actual.getFirst());
+    ADTList<Wood> actual = router.cut(ply1, Jig.circleCut, 36);
+    assertEquals(expected, actual.get(0));
 
     // Test dimensional wood
     DimensionalWood expected2 = new DimensionalWood(dims2);
     expected2.makeSmooth();
-    ArrayList<Wood> actual2 = new ArrayList<>(router.cut(dim1, Jig.circleCut, 3.5));
-    assertEquals(expected2, actual2.getFirst());
+    ADTList<Wood> actual2 = router.cut(dim1, Jig.circleCut, 3.5);
+    assertEquals(expected2, actual2.get(0));
 
 
   }

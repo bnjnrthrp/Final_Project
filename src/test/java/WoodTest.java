@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ public class WoodTest {
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
 
-    ArrayList<Wood> actual = plywood1.cut(0, 50, true, cutShape.rectToRect);
+    ADTList<Wood> actual = plywood1.cut(0, 50, true, cutShape.rectToRect);
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
   }
@@ -39,12 +38,12 @@ public class WoodTest {
     double[] param1 = {38, .75};
     Plywood expected1 = new Plywood(param1);
 
-    ArrayList<Wood> actual = plywood1.cut(0, 38, true, cutShape.rectToRound);
+    ADTList<Wood> actual = plywood1.cut(0, 38, true, cutShape.rectToRound);
     assertEquals(expected1, actual.get(0));
   }
 
   @Test
   public void testToString() {
-    assertEquals("Type: plywood, Dimensions: 96.0x48.0x0.8 (LxWxT)", plywood1.toString());
+    assertEquals("Type: plywood, Length: 96.0, Width: 48.0, Thickness: 0.8", plywood1.toString());
   }
 }

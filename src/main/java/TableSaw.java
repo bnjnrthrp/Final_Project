@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * This class represents a tablesaw, which can cut rectangular pieces.
  * If used without a jig, it will always cut the side that has the longer dimension.
@@ -27,10 +25,10 @@ public class TableSaw extends Tool implements iCuttingTool {
    * Cuts a piece of wood along the long side.
    * @param wood the wood to cut
    * @param size the new size (the long side doesn't change)
-   * @return two pieces of wood in an ArrayList, the cut piece first, then the remaining piece second.
+   * @return two pieces of wood in an ADTList, the cut piece first, then the remaining piece second.
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size) throws IllegalStateException, IllegalArgumentException{
+  public ADTList<Wood> cut(Wood wood, double size) throws IllegalStateException, IllegalArgumentException{
     if (!this.isUnlocked()){
       throw new IllegalStateException(Const.ERROR_TOOL_LOCKED);
     }
@@ -51,10 +49,10 @@ public class TableSaw extends Tool implements iCuttingTool {
    * @param wood the piece to cut
    * @param size the new size (the short end doesn't change)
    * @param jig must be a cross-cut sled
-   * @return two pieces of wood in an ArrayList, the cut piece first, then the remaining piece.
+   * @return two pieces of wood in an ADTList, the cut piece first, then the remaining piece.
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, Jig jig, double size) throws IllegalStateException, IllegalArgumentException {
+  public ADTList<Wood> cut(Wood wood, Jig jig, double size) throws IllegalStateException, IllegalArgumentException {
     if (!this.isUnlocked() || !jig.isUnlocked()){
       throw new IllegalStateException(Const.ERROR_TOOL_LOCKED);
     }

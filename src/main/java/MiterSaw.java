@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class MiterSaw extends Tool implements iCuttingTool {
   public MiterSaw(){
     super(Const.VALUE_TOOL_MITER_SAW);
@@ -9,10 +7,10 @@ public class MiterSaw extends Tool implements iCuttingTool {
    * Cuts a rectangular piece of wood into two pieces of wood
    * @param wood the piece to cut
    * @param size the measurement to cut it
-   * @return an ArrayList with the two remaining pieces
+   * @return an ADTList with the two remaining pieces
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size) throws IllegalArgumentException {
+  public ADTList<Wood> cut(Wood wood, double size) throws IllegalArgumentException {
     if (!compatible(wood)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
@@ -28,7 +26,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
    * @return
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, Jig jig, double size) {
+  public ADTList<Wood> cut(Wood wood, Jig jig, double size) {
     if (!compatible(wood, jig)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
@@ -41,7 +39,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
    * @param template the template to match
    * @return an array with the one piece cut to match the template, and the remaining
    */
-  public ArrayList<Wood> cut(Wood wood, Wood template){
+  public ADTList<Wood> cut(Wood wood, Wood template){
     if (!compatible(wood) || !compatible(template)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }

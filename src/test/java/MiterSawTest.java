@@ -1,13 +1,11 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
 public class MiterSawTest {
   MiterSaw miterSaw;
-  List<Wood> inventory;
+  ADTList<Wood> inventory;
   Wood ply1;
   Wood dim1;
   Wood dim2;
@@ -17,7 +15,7 @@ public class MiterSawTest {
     miterSaw = new MiterSaw();
     double[] param = {24, 4, 2};
 
-    inventory = new ArrayList<>();
+    inventory = new ADTList<>();
     ply1 = new Plywood();
     dim1 = new DimensionalWood();
     dim2 = new DimensionalWood(param);
@@ -46,7 +44,7 @@ public class MiterSawTest {
     double[] param2 = {47, 4, 2};
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
-    ArrayList<Wood> actual = new ArrayList<>(miterSaw.cut(inventory.get(1), 49.0));
+    ADTList<Wood> actual = miterSaw.cut(inventory.get(1), 49.0);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
@@ -58,9 +56,9 @@ public class MiterSawTest {
     double[] param2 = {72, 4, 2};
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
-    ArrayList<Wood> actual = new ArrayList<>(miterSaw.cut(inventory.get(1), inventory.get(2)));
+    ADTList<Wood> actual = miterSaw.cut(inventory.get(1), inventory.get(2));
 
-    assertEquals(expected1, actual.getFirst());
+    assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
   }
 

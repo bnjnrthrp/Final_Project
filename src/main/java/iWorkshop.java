@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * The workshop interface is interface that governs the use of the workshop. This represents the
  * main activities of the game - we can go to work, unlock tools, cut wood, and assemble furniture
@@ -74,14 +72,14 @@ public interface iWorkshop {
    *
    * @return the wood inventory
    */
-  public ArrayList<Wood> getWoodInventory();
+  public ADTList<Wood> getWoodInventory();
 
   /**
    * Returns an Arraylist with the tool inventory of the shop, and their unlocked status.
    *
    * @return the tool inventory
    */
-  public ArrayList<Tool> getTools();
+  public ADTList<Tool> getTools();
 
   /**
    * Gets the specified tool via an index
@@ -91,11 +89,11 @@ public interface iWorkshop {
   public Tool getTools(int index);
 
   /**
-   * Returns an ArrayList with the jig inventory of the shop, and their unlocked status.
+   * Returns an ADTList with the jig inventory of the shop, and their unlocked status.
    *
    * @return the jig inventory
    */
-  public ArrayList<Jig> getJigs();
+  public ADTList<Jig> getJigs();
 
   /**
    * Returns a specific jig from an index
