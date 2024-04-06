@@ -9,6 +9,9 @@ public interface iWorkshop {
   /** Go to work to get money for the account */
   public void goToWork();
 
+  /** Get the account balance */
+  public int getBalance();
+
   /**
    * Loads the workshop, initializes all the tools, jigs, and locks them so they can later be
    * unlocked. Initializes the inventories.
@@ -23,6 +26,13 @@ public interface iWorkshop {
   public void buyWood(WoodType type);
 
   /**
+   * Gets an item from the chosen inventory
+   * @param index the index within the inventory of the desired item
+   * @return the item chosen.
+   */
+  public Wood getWood(int index);
+
+  /**
    * Unlocks a tool to make it available for use.
    *
    * @param tool the tool to unlock
@@ -33,23 +43,21 @@ public interface iWorkshop {
   /**
    * Cuts a piece of wood using one of the tools in the shop. May use a jig
    *
-   * @param wood The piece of wood to cut
-   * @param tool The tool to do the cutting
+   * @param woodIndex The piece of wood to cut
+   * @param toolIndex The tool to do the cutting
    * @param newSize The size we want to cut it to
-   * @return An ArrayList with 2 pieces of wood, one of the size and the other, the remaining
    */
-  public ArrayList<Wood> cutWood(Wood wood, iCuttingTool tool, double newSize);
+  public void cutWood(int woodIndex, int toolIndex, double newSize);
 
   /**
    * Cuts a piece of wood using one of the tools in the shop. May use a jig
    *
-   * @param wood The piece of wood to cut
-   * @param tool The tool to do the cutting
-   * @param jig A jig to help the cutting
+   * @param woodIndex The piece of wood to cut
+   * @param toolIndex The tool to do the cutting
+   * @param jigIndex A jig to help the cutting
    * @param newSize The size we want to cut it to
-   * @return An ArrayList with 2 pieces of wood, one of the size and the other, the remaining
    */
-  public ArrayList<Wood> cutWood(Wood wood, iCuttingTool tool, Jig jig, double newSize);
+  public void cutWood(int woodIndex, int toolIndex, int jigIndex, double newSize);
 
   /**
    * Attempts to build and sell a piece of furniture built from the available wood in the inventory
@@ -76,9 +84,23 @@ public interface iWorkshop {
   public ArrayList<Tool> getTools();
 
   /**
+   * Gets the specified tool via an index
+   * @param index the index of the desired tool
+   * @return the tool
+   */
+  public Tool getTools(int index);
+
+  /**
    * Returns an ArrayList with the jig inventory of the shop, and their unlocked status.
    *
    * @return the jig inventory
    */
   public ArrayList<Jig> getJigs();
+
+  /**
+   * Returns a specific jig from an index
+   * @param index the index of the desired jig
+   * @return the jig
+   */
+  public Jig getJigs(int index);
 }

@@ -43,6 +43,7 @@ public class TableSawTest {
     double[] param2 = {96, 18, .75};
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
+    tableSaw.unlock();
     ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), 30.0);
 
     assertEquals(expected1, actual.get(0));
@@ -53,9 +54,11 @@ public class TableSawTest {
   public void testCutWithJig() {
     double[] param1 = {49, 48, .75};
     double[] param2 = {47, 48, .75};
+    tableSaw.unlock();
+    Jig.crossCutSled.unlock();
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
-    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), 49.0, Jig.crossCutSled);
+    ArrayList<Wood> actual = tableSaw.cut(inventory.getFirst(), Jig.crossCutSled, 49.0);
 
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
@@ -70,7 +73,7 @@ public class TableSawTest {
     Plywood ply3 = new Plywood(dims);
     Plywood expected = new Plywood(dims2);
     Plywood expected2 = new Plywood(dims3);
-
+    tableSaw.unlock();
     ArrayList<Wood> actual = tableSaw.cut(ply3, 16);
 
     assertEquals(expected, actual.get(0));

@@ -1,4 +1,4 @@
-public abstract class Unlockable {
+public abstract class Unlockable implements iUnlockable{
   protected int value;
   protected boolean unlocked = false;
 
@@ -35,7 +35,7 @@ public abstract class Unlockable {
     return this.unlocked;
   }
 
-  protected void unlock(){
+  public void unlock(){
     this.unlocked = true;
   }
 }

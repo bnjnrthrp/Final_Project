@@ -28,7 +28,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
    * @return
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size, Jig jig) {
+  public ArrayList<Wood> cut(Wood wood, Jig jig, double size) {
     if (!compatible(wood, jig)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }

@@ -42,7 +42,7 @@ public class Router extends Tool implements iCuttingTool{
    * piece of wood
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size, Jig jig) throws IllegalStateException{
+  public ArrayList<Wood> cut(Wood wood, Jig jig, double size) throws IllegalStateException{
     if (jig != Jig.circleCut){
       throw new IllegalStateException(Const.ERROR_INCOMPATIBLE_JIG);
     }

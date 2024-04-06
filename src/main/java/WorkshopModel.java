@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class WorkshopModel implements iWorkshop{
-  private int account;
-  private ArrayList<Wood> inventory;
+  private int balance;
+  private ArrayList<Wood> woodInventory;
   private ArrayList<Tool> tools;
   private ArrayList<Jig> jigs;
 
   public WorkshopModel(){
-    this.account = 0;
-    this.inventory = new ArrayList<Wood>();
+    this.balance = 0;
+    this.woodInventory = new ArrayList<Wood>();
     this.tools = new ArrayList<Tool>();
     this.jigs = new ArrayList<Jig>();
 
@@ -19,17 +19,22 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void goToWork() {
-    ;
+    this.addMoney(100);
+  }
+
+  @Override
+  public int getBalance(){
+    return this.balance;
   }
 
   private void changeBalance(int amount, boolean subtract) throws IllegalArgumentException{
     if (amount < 0){
       throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
     } else if (subtract) {
-      this.account -= amount;
+      this.balance -= amount;
       return;
     } else {
-      this.account += amount;
+      this.balance += amount;
     }
   }
 
@@ -42,7 +47,7 @@ public class WorkshopModel implements iWorkshop{
     if (amount < 0){
       throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
     } else {
-      this.account += amount;
+      this.balance += amount;
     }
   }
 
@@ -50,7 +55,7 @@ public class WorkshopModel implements iWorkshop{
     if (amount < 0) {
       throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
     } else {
-      this.account -= amount;
+      this.balance -= amount;
     }
   }
 
@@ -60,7 +65,13 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void loadWorkshop() {
+    this.tools.add(new TableSaw());
+    this.tools.add(new MiterSaw());
+    this.tools.add(new Router());
 
+    this.jigs.add(Jig.crossCutSled);
+    this.jigs.add(Jig.tapeMeasure);
+    this.jigs.add(Jig.circleCut);
   }
 
   /**
@@ -70,7 +81,15 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void buyWood(WoodType type) {
+    if (type == WoodType.plywood){
+      this.woodInventory.add(new Plywood());
+    } else if (type == WoodType.dimensional){
+      this.woodInventory.add(new DimensionalWood());
+    }
+  }
 
+  public Wood getWood(int index){
+    return this.woodInventory.get(index);
   }
 
   /**
@@ -81,34 +100,59 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void unlockTool(iUnlockable tool) throws IllegalStateException {
-
+    tool.unlock();
   }
 
   /**
    * Cuts a piece of wood using one of the tools in the shop. May use a jig
    *
-   * @param wood    The piece of wood to cut
-   * @param tool    The tool to do the cutting
+   * @param woodIndex    The piece of wood to cut
+   * @param toolIndex    The tool to do the cutting
    * @param newSize The size we want to cut it to
    * @return An ArrayList with 2 pieces of wood, one of the size and the other, the remaining
    */
   @Override
-  public ArrayList<Wood> cutWood(Wood wood, iCuttingTool tool, double newSize) {
-    return null;
+  public void cutWood(int woodIndex, int toolIndex, double newSize) {
+    // Get the specified wood and tool
+    Wood wood = this.woodInventory.remove(woodIndex);
+    iCuttingTool tool = this.getTools(toolIndex);
+    try {
+      // Try to cut the wood and add the two pieces back into the inventory
+      this.woodInventory.addAll(woodIndex, tool.cut(wood, newSize));
+    } catch (IllegalArgumentException | IllegalStateException e){
+      // If an error, return the wood back to its original spot
+      this.woodInventory.add(woodIndex, wood);
+      // Pass the error back to the controller.
+      throw e;
+    }
   }
 
   /**
    * Cuts a piece of wood using one of the tools in the shop. May use a jig
    *
-   * @param wood    The piece of wood to cut
-   * @param tool    The tool to do the cutting
-   * @param jig     A jig to help the cutting
+   * @param woodIndex    The piece of wood to cut
+   * @param toolIndex    The tool to do the cutting
+   * @param jigIndex     A jig to help the cutting
    * @param newSize The size we want to cut it to
    * @return An ArrayList with 2 pieces of wood, one of the size and the other, the remaining
    */
   @Override
-  public ArrayList<Wood> cutWood(Wood wood, iCuttingTool tool, Jig jig, double newSize) {
-    return null;
+  public void cutWood(int woodIndex, int toolIndex, int jigIndex, double newSize) {
+    // Get the wood, tool and jig
+    Wood wood = this.woodInventory.remove(woodIndex);
+    iCuttingTool tool = this.getTools(toolIndex);
+    Jig jig = this.getJigs(jigIndex);
+    // Try to cut the wood and add it back to the inventory
+    try {
+      // Try to cut the wood and add the two pieces back into the inventory
+      this.woodInventory.addAll(woodIndex, tool.cut(wood, newSize));
+    } catch (IllegalArgumentException | IllegalStateException e){
+      // Otherwise, return the wood
+      // If an error, return the wood back to its original spot
+      this.woodInventory.add(woodIndex, wood);
+      // Pass the error back to the controller.
+      throw e;
+    }
   }
 
   /**
@@ -130,7 +174,7 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public ArrayList<Wood> getWoodInventory() {
-    return null;
+    return this.woodInventory;
   }
 
   /**
@@ -140,7 +184,16 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public ArrayList<Tool> getTools() {
-    return null;
+    return this.tools;
+  }
+
+  /**
+   * Gets a tool from a desired index
+   * @param index the index of the desired tool
+   * @return the desired tool.
+   */
+  public Tool getTools(int index){
+    return this.tools.get(index);
   }
 
   /**
@@ -150,6 +203,16 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public ArrayList<Jig> getJigs() {
-    return null;
+    return this.jigs;
+  }
+
+  /**
+   * Returns the jig in question
+   * @param index the index of the desired jig
+   * @return the jig desired
+   */
+  @Override
+  public Jig getJigs(int index){
+    return this.jigs.get(index);
   }
 }

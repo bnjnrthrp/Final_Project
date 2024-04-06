@@ -1,6 +1,6 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public interface iCuttingTool {
-  List<Wood> cut(Wood wood, double size);
-  List<Wood> cut(Wood wood, double size, Jig jig);
+  ArrayList<Wood> cut(Wood wood, double size);
+  ArrayList<Wood> cut(Wood wood, Jig jig, double size);
 }

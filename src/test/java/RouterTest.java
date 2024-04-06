@@ -53,13 +53,13 @@ public class RouterTest {
     // Test plywood
     Plywood expected = new Plywood(dims);
     expected.makeSmooth();
-    ArrayList<Wood> actual = new ArrayList<>(router.cut(ply1, 36, Jig.circleCut));
+    ArrayList<Wood> actual = new ArrayList<>(router.cut(ply1, Jig.circleCut, 36));
     assertEquals(expected, actual.getFirst());
 
     // Test dimensional wood
     DimensionalWood expected2 = new DimensionalWood(dims2);
     expected2.makeSmooth();
-    ArrayList<Wood> actual2 = new ArrayList<>(router.cut(dim1, 3.5, Jig.circleCut));
+    ArrayList<Wood> actual2 = new ArrayList<>(router.cut(dim1, Jig.circleCut, 3.5));
     assertEquals(expected2, actual2.getFirst());
 
 
@@ -67,7 +67,7 @@ public class RouterTest {
 
   @Test(expected = IllegalStateException.class)
   public void testCutWithJigIllegalSize(){
-    router.cut(ply1, 72, Jig.circleCut);
+    router.cut(ply1, Jig.circleCut, 72);
   }
 
 }

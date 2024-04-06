@@ -9,6 +9,7 @@ public class Const {
   public static final String ERROR_INCOMPATIBLE_CUTTABLE_SHAPE = "Cannot cut this shape on this tool";
   public static final String ERROR_INCOMPATIBLE_JIG = "Jig not compatible with this tool";
   public static final String ERROR_INCOMPATIBLE_WOOD = "This wood isn't compatible with this tool";
+  public static final String ERROR_TOOL_LOCKED = "This item is still locked";
 
   //Standard Dimensions
   public static final double LENGTH_PLYWOOD = 96;

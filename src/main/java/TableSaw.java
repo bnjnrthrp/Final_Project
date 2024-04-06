@@ -30,7 +30,10 @@ public class TableSaw extends Tool implements iCuttingTool {
    * @return two pieces of wood in an ArrayList, the cut piece first, then the remaining piece second.
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size) {
+  public ArrayList<Wood> cut(Wood wood, double size) throws IllegalStateException, IllegalArgumentException{
+    if (!this.isUnlocked()){
+      throw new IllegalStateException(Const.ERROR_TOOL_LOCKED);
+    }
     if (!isCompatible(wood)){
       // Throws error if incompatible, since you can't cut non-retangles on a miter saw
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_CUTTABLE_SHAPE);
@@ -51,7 +54,10 @@ public class TableSaw extends Tool implements iCuttingTool {
    * @return two pieces of wood in an ArrayList, the cut piece first, then the remaining piece.
    */
   @Override
-  public ArrayList<Wood> cut(Wood wood, double size, Jig jig) {
+  public ArrayList<Wood> cut(Wood wood, Jig jig, double size) throws IllegalStateException, IllegalArgumentException {
+    if (!this.isUnlocked() || !jig.isUnlocked()){
+      throw new IllegalStateException(Const.ERROR_TOOL_LOCKED);
+    }
     // Throw error if not a rectangle
     if (!isCompatible(wood)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_CUTTABLE_SHAPE);
