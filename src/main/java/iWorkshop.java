@@ -65,7 +65,9 @@ public interface iWorkshop {
    * @throws IllegalStateException If there was insufficient or compatible wood to make the
    *     furniture
    */
-  public double makeFurniture(Furniture furniture) throws IllegalStateException;
+  public void makeFurniture(Furniture furniture) throws IllegalStateException;
+
+  public ADTList<Furniture> getFurniture();
 
   /**
    * Returns an Arraylist of the wood inventory in the shop

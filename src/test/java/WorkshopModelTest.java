@@ -128,7 +128,18 @@ public class WorkshopModelTest {
     ws.cutWood(2,0,0, 13);
     ws.cutWood(3,0,0, 13);
 
-    System.out.println(ws.getWoodInventory());
+    ws.cutWood(1, 0, 1);
+    ws.cutWood(2, 0, 1);
+    ws.cutWood(3, 0, 1);
+
+    ws.cutWood(0, 0, 6);
+    ws.cutWood(0, 0, 0, 15);
+    ws.makeFurniture(Furniture.SmallStool);
+
+    ADTList<Furniture> expected = new ADTList<Furniture>();
+    expected.add(Furniture.SmallStool);
+
+    assertEquals(expected, ws.getFurniture());
   }
 
   @Test

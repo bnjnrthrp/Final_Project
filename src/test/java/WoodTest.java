@@ -24,24 +24,15 @@ public class WoodTest {
 
     ADTList<Wood> actual = new ADTList<>();
     actual.add(plywood1);
-    actual.addAll(plywood1.cut(0, 50, true, cutShape.rectToRect));
+    actual.addAll(plywood1.cut(0, 50, true));
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
   }
 
   @Test (expected= IllegalStateException.class)
   public void cutPlywoodIllegalSize(){
-    plywood1.cut(0, 100, true, cutShape.rectToRect);
+    plywood1.cut(0, 100, true);
 
-  }
-
-  @Test
-  public void cutPlywoodRound(){
-    double[] param1 = {38, .75};
-    Plywood expected1 = new Plywood(param1);
-
-    ADTList<Wood> actual = plywood1.cut(0, 38, true, cutShape.rectToRound);
-    assertEquals(expected1, actual.get(0));
   }
 
   @Test

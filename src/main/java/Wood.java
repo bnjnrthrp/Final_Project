@@ -54,7 +54,7 @@ public abstract class Wood implements iCuttable<Wood>{
    */
   public boolean isSmooth() {return this.smooth;}
 
-  public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate, cutShape cutType);
+  public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate);
 
   @Override
   public boolean equals(Object obj){

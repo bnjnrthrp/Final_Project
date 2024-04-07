@@ -3,12 +3,14 @@ public class WorkshopModel implements iWorkshop{
   private ADTList<Wood> woodInventory;
   private ADTList<Tool> tools;
   private ADTList<Jig> jigs;
+  private ADTList<Furniture> furniture;
 
   public WorkshopModel(){
     this.balance = 0;
     this.woodInventory = new ADTList<Wood>();
     this.tools = new ADTList<Tool>();
     this.jigs = new ADTList<Jig>();
+    this.furniture = new ADTList<Furniture>();
   }
 
   /**
@@ -155,9 +157,17 @@ public class WorkshopModel implements iWorkshop{
    * @throws IllegalStateException If there was insufficient or compatible wood to make the furniture
    */
   @Override
-  public double makeFurniture(Furniture furniture) throws IllegalStateException {
-    return 0;
+  public void makeFurniture(Furniture furniture) throws IllegalStateException {
+    ADTList<Wood> test = woodInventory.filter(w -> (w.getShape().getDimensions() == Const.STOOL_LEGS));
+    System.out.println(test);
   }
+
+  /**
+   * Gets a list of the inventory of furniture in the workshop.
+   * @return an ADTList of furniture
+   */
+  @Override
+  public ADTList<Furniture> getFurniture(){return this.furniture;}
 
   /**
    * Returns an Arraylist of the wood inventory in the shop

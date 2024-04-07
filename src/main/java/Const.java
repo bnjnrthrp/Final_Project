@@ -20,6 +20,18 @@ public class Const {
   public static final double THICKNESS_PLYWOOD = .75;
   public static final double THICKNESS_DIMENSIONAL = 2;
 
+  public static final double[] TABLE_LEGS = {30, 2, 2};
+  public static final double[] TABLE_TOP = {60, 36, .75};
+  public static final double[] STOOL_LEGS = {13, 1, 2};
+  public static final double[] STOOL_SEAT = {15, 6, 2};
+  public static final double[] CHAIR_FRONT_LEGS = {18, 1, 2};
+  public static final double[] CHAIR_BACK_LEGS = {40, 1, 2};
+  public static final double[] CHAIR_SEAT = {15, 15, .75};
+
+  public static final String table = "table";
+  public static final String chair = "chair";
+  public static final String stool = "stool";
+
   //Standard values
   public static final int VALUE_JIG_CROSSCUT_SLED = 100;
   public static final int VALUE_JIG_TAPE_MEASURE = 10;

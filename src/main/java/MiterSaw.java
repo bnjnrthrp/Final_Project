@@ -14,7 +14,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
     if (!compatible(wood)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
-    return wood.cut(0, size, false, cutShape.rectToRect);
+    return wood.cut(0, size, false);
   }
 
   /**
@@ -30,7 +30,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
     if (!compatible(wood, jig)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
-    return wood.cut(0, size, true, cutShape.rectToRect);
+    return wood.cut(0, size, true);
   }
 
   /**
@@ -44,7 +44,7 @@ public class MiterSaw extends Tool implements iCuttingTool {
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
     double[] params = template.getShape().getDimensions();
-    return wood.cut(0, params[0], true, cutShape.rectToRect);
+    return wood.cut(0, params[0], true);
   }
 
   /**
