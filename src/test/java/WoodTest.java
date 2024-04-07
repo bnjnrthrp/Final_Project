@@ -22,7 +22,9 @@ public class WoodTest {
     Plywood expected1 = new Plywood(param1);
     Plywood expected2 = new Plywood(param2);
 
-    ADTList<Wood> actual = plywood1.cut(0, 50, true, cutShape.rectToRect);
+    ADTList<Wood> actual = new ADTList<>();
+    actual.add(plywood1);
+    actual.addAll(plywood1.cut(0, 50, true, cutShape.rectToRect));
     assertEquals(expected1, actual.get(0));
     assertEquals(expected2, actual.get(1));
   }

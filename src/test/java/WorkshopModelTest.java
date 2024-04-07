@@ -85,8 +85,8 @@ public class WorkshopModelTest {
     ADTList<Wood> expected = new ADTList<>();
     expected.add(new Plywood(expected1)); // Original piece cross cut
     expected.add(new DimensionalWood());  // Untouched dimensional wood
-    expected.add(new Plywood(expected1)); // Remaining from cross cut
     expected.add(new Plywood(expected2)); // Original remaining from rip cut
+    expected.add(new Plywood(expected1)); // Remaining from cross cut
 
     assertEquals(expected.toString(), ws.getWoodInventory().toString());
   }

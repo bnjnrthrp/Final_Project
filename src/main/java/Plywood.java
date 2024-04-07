@@ -39,7 +39,7 @@ public class Plywood extends Wood implements iCuttable<Wood> {
     Plywood newPiece = new Plywood(dimensions);
     // Insert the original piece into the front
     ADTList<Wood> pieces = new ADTList<>();
-    pieces.add(this);
+//    pieces.add(this);
 
     try {
       this.getShape().setSingleDimension(sideIndex, newDimension);

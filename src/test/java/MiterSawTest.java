@@ -44,10 +44,10 @@ public class MiterSawTest {
     double[] param2 = {47, 4, 2};
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
-    ADTList<Wood> actual = miterSaw.cut(inventory.get(1), 49.0);
+    inventory.addAll(miterSaw.cut(inventory.get(1), 49.0));
 
-    assertEquals(expected1, actual.get(0));
-    assertEquals(expected2, actual.get(1));
+    assertEquals(expected1, inventory.get(1));
+    assertEquals(expected2, inventory.get(3));
   }
 
   @Test
@@ -56,10 +56,10 @@ public class MiterSawTest {
     double[] param2 = {72, 4, 2};
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
-    ADTList<Wood> actual = miterSaw.cut(inventory.get(1), inventory.get(2));
+    inventory.addAll(miterSaw.cut(inventory.get(1), inventory.get(2)));
 
-    assertEquals(expected1, actual.get(0));
-    assertEquals(expected2, actual.get(1));
+    assertEquals(expected1, inventory.get(1));
+    assertEquals(expected2, inventory.get(3));
   }
 
   @Test (expected=IllegalArgumentException.class)

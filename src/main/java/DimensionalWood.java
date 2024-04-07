@@ -38,7 +38,7 @@ public class DimensionalWood extends Wood {
     DimensionalWood newPiece = new DimensionalWood(dimensions);
     // Insert the original piece into the front
     ADTList<Wood> pieces = new ADTList<>();
-    pieces.add(this);
+//    pieces.add(this);
 
     // Try to cut the first board to size.
     try {
