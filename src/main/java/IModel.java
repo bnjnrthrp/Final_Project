@@ -2,7 +2,7 @@
  * The workshop interface is interface that governs the use of the workshop. This represents the
  * main activities of the game - we can go to work, unlock tools, cut wood, and assemble furniture
  */
-public interface iWorkshop {
+public interface IModel {
 
   /** Go to work to get money for the account */
   public void goToWork();
@@ -36,7 +36,7 @@ public interface iWorkshop {
    * @param tool the tool to unlock
    * @throws IllegalStateException if you attempt to unlock a tool that is already unlocked.
    */
-  public void unlockTool(iUnlockable tool) throws IllegalStateException;
+  public void unlockTool(IUnlockable tool) throws IllegalStateException;
 
   /**
    * Cuts a piece of wood using one of the tools in the shop. May use a jig

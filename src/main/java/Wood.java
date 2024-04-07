@@ -3,7 +3,7 @@
  * dimensions, and it also contains a type. In future expansion, the type of wood can have an impact
  * on how difficult it is to work with (soft vs hard woods) and what furniture can be made.
  */
-public abstract class Wood implements iCuttable<Wood>{
+public abstract class Wood implements ICuttable<Wood> {
   protected Shape shape;
   protected final WoodType type;
   protected boolean smooth = false;

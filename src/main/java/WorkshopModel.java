@@ -1,7 +1,6 @@
 import java.util.Arrays;
-import java.util.function.Predicate;
 
-public class WorkshopModel implements iWorkshop{
+public class WorkshopModel implements IModel {
   private int balance;
   private ADTList<Wood> woodInventory;
   private ADTList<Tool> tools;
@@ -28,16 +27,6 @@ public class WorkshopModel implements iWorkshop{
   @Override
   public int getBalance(){
     return this.balance;
-  }
-
-  private void changeBalance(int amount, boolean subtract) throws IllegalArgumentException{
-    if (amount < 0){
-      throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
-    } else if (subtract) {
-      this.balance -= amount;
-    } else {
-      this.balance += amount;
-    }
   }
 
   /**
@@ -103,7 +92,7 @@ public class WorkshopModel implements iWorkshop{
    * @throws IllegalStateException if you attempt to unlock a tool that is already unlocked.
    */
   @Override
-  public void unlockTool(iUnlockable tool) throws IllegalStateException {
+  public void unlockTool(IUnlockable tool) throws IllegalStateException {
     if (this.balance < tool.getValue()){
       throw new IllegalStateException(Const.ERROR_INSUFFICIENT_FUNDS);
     }
@@ -121,7 +110,7 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void cutWood(int woodIndex, int toolIndex, double newSize) {
-        iCuttingTool tool = this.getTools(toolIndex);
+        ICuttingTool tool = this.getTools(toolIndex);
     try {
       woodInventory.addAll(tool.cut(woodInventory.get(woodIndex), newSize));
     } catch (IllegalArgumentException | IllegalStateException e) {
@@ -141,7 +130,7 @@ public class WorkshopModel implements iWorkshop{
   @Override
   public void cutWood(int woodIndex, int toolIndex, int jigIndex, double newSize) {
     // Get the indices for the tools and jig
-    iCuttingTool tool = this.getTools(toolIndex);
+    ICuttingTool tool = this.getTools(toolIndex);
     Jig jig = this.getJigs(jigIndex);
 
     // Attempt to cut the wood and add the remainder to the inventory.

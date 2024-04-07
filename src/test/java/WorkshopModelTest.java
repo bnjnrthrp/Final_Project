@@ -178,4 +178,11 @@ public class WorkshopModelTest {
 
     assertEquals(expected.toString(), ws.getJigs().toString());
   }
+
+  @Test
+  public void print(){
+    System.out.println(ws.getWoodInventory());
+    System.out.println(ws.getTools());
+    System.out.println(ws.getJigs());
+  }
 }

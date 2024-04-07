@@ -8,13 +8,13 @@ import java.util.function.Predicate;
  *
  * @param <T> the data held within the node.
  */
-public class Node<T> implements iNode<T> {
+public class Node<T> implements INode<T> {
 
   private T data;
-  private iNode<T> nextNode;
+  private INode<T> nextNode;
 
   /** Basic constructor, creates a node given the data and the next node to which it should point */
-  public Node(T data, iNode<T> nextNode) {
+  public Node(T data, INode<T> nextNode) {
     this.data = data;
     this.nextNode = nextNode;
   }
@@ -38,7 +38,7 @@ public class Node<T> implements iNode<T> {
    * @return the next node.
    */
   @Override
-  public iNode<T> getNext(){
+  public INode<T> getNext(){
     return this.nextNode;
   }
 
@@ -47,7 +47,7 @@ public class Node<T> implements iNode<T> {
    * @param nextNode The new node to connected to the list.
    */
   @Override
-  public void setNextNode(iNode<T> nextNode){
+  public void setNextNode(INode<T> nextNode){
     this.nextNode = nextNode;
   }
 
@@ -58,7 +58,7 @@ public class Node<T> implements iNode<T> {
    * @return the newly created node
    */
   @Override
-  public iNode<T> addFront(T data) {
+  public INode<T> addFront(T data) {
     return new Node<T>(data, this);
   }
 
@@ -69,7 +69,7 @@ public class Node<T> implements iNode<T> {
    * @return the newly created node
    */
   @Override
-  public iNode<T> addBack(T data) {
+  public INode<T> addBack(T data) {
     this.nextNode = this.nextNode.addBack(data);
     return this;
   }
@@ -80,7 +80,7 @@ public class Node<T> implements iNode<T> {
    * @return
    */
   @Override
-  public iNode<T> add(T data){
+  public INode<T> add(T data){
     return this.addBack(data);
   }
 
@@ -92,7 +92,7 @@ public class Node<T> implements iNode<T> {
    * @return the newly created node.
    */
   @Override
-  public iNode<T> add(T data, int index) {
+  public INode<T> add(T data, int index) {
     if (index == 0) {
       return addFront(data);
     } else {
@@ -106,7 +106,7 @@ public class Node<T> implements iNode<T> {
    * @param head the head of the new list to add
    */
   @Override
-  public void addAll(iNode<T> head){
+  public void addAll(INode<T> head){
     if (this.count() == 1) {
       this.nextNode = head;
     } else {
@@ -120,7 +120,7 @@ public class Node<T> implements iNode<T> {
    * @return the removed Task node
    */
   @Override
-  public iNode<T> remove(T data) {
+  public INode<T> remove(T data) {
     if (this.data.equals(data)) {
       return this.nextNode;
     } else {
@@ -136,7 +136,7 @@ public class Node<T> implements iNode<T> {
    * @throws IndexOutOfBoundsException if the index is <0
    */
   @Override
-  public iNode<T> remove(int index) throws IndexOutOfBoundsException{
+  public INode<T> remove(int index) throws IndexOutOfBoundsException{
     if (index < 0) {
       throw new IndexOutOfBoundsException();
     }
@@ -174,7 +174,7 @@ public class Node<T> implements iNode<T> {
 
   /** Gets the nodes that pass the predicate test */
   @Override
-  public <T> iNode<T> filter(Predicate<T> tester) {
+  public <T> INode<T> filter(Predicate<T> tester) {
     if (tester.test((T) this.data)) {
       return new Node<T>((T) this.data, nextNode.filter(tester));
     } else {
@@ -189,7 +189,7 @@ public class Node<T> implements iNode<T> {
    * @param <R> The return type of the converter function
    */
   @Override
-  public <R> iNode<R> map(Function<T,R> converter){
+  public <R> INode<R> map(Function<T,R> converter){
     return new Node<R>(
         converter.apply(this.data),
         this.nextNode.map(converter));
@@ -211,8 +211,8 @@ public class Node<T> implements iNode<T> {
    * @return returns the data of the node chain.
    */
   @Override
-  public String printAll() {
-    return this.data.toString() + ", " + this.nextNode.printAll();
+  public String printAll(int startIndex) {
+    return "%d. %s\n%s".formatted(startIndex, this.data.toString(), this.nextNode.printAll(startIndex+1));
   }
 }
 

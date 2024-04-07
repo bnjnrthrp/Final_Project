@@ -10,7 +10,7 @@ import java.util.function.Predicate;
  * @param <T> The generic type to fill the nodes
  */
 public class ADTList<T> {
-  private iNode<T> head;
+  private INode<T> head;
 
   /** No argument constructor constructs a basic list, with just an empty Node */
   public ADTList() {
@@ -22,7 +22,7 @@ public class ADTList<T> {
    *
    * @param data the data to fill the node.
    */
-  public ADTList(iNode<T> data) {
+  public ADTList(INode<T> data) {
     this.head = data;
   }
 
@@ -155,6 +155,6 @@ public class ADTList<T> {
    */
   @Override
   public String toString() {
-    return head.printAll();
+    return head.printAll(0);
   }
 }

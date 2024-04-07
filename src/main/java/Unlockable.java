@@ -1,4 +1,4 @@
-public abstract class Unlockable implements iUnlockable{
+public abstract class Unlockable implements IUnlockable {
   protected int value;
   protected boolean unlocked = false;
 

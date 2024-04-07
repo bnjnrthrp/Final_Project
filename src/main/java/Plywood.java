@@ -1,4 +1,4 @@
-public class Plywood extends Wood implements iCuttable<Wood> {
+public class Plywood extends Wood implements ICuttable<Wood> {
 
   /**
    * Constructor for a piece of plywood. Standard size is found in the Const class

@@ -3,7 +3,7 @@
  * another tool to make a job easier.
  */
 
-public enum Jig implements iUnlockable{
+public enum Jig implements IUnlockable {
   crossCutSled(Const.VALUE_JIG_CROSSCUT_SLED),
   tapeMeasure(Const.VALUE_JIG_TAPE_MEASURE);
 

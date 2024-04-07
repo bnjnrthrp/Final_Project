@@ -3,7 +3,7 @@
  * If used without a jig, it will always cut the side that has the longer dimension.
  * If used with a crosscut jig, it will always cut the side that has the shorter dimension
  */
-public class TableSaw extends Tool implements iCuttingTool {
+public class TableSaw extends Tool implements ICuttingTool {
 
   /**
    * Basic constructor for table saw

@@ -3,7 +3,7 @@
  */
 
 
-public abstract class Tool extends Unlockable implements iCuttingTool, iUnlockable{
+public abstract class Tool extends Unlockable implements ICuttingTool, IUnlockable {
   public Tool(int value){
     super(value);
   };

@@ -1,4 +1,4 @@
-public class MiterSaw extends Tool implements iCuttingTool {
+public class MiterSaw extends Tool implements ICuttingTool {
   public MiterSaw(){
     super(Const.VALUE_TOOL_MITER_SAW);
   }

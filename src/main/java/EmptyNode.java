@@ -1,7 +1,7 @@
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class EmptyNode<T> implements iNode<T> {
+public class EmptyNode<T> implements INode<T> {
 
   /**
    * Adds a node in front of the empty node.
@@ -10,7 +10,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @return the newly created node
    */
   @Override
-  public iNode<T> addFront(T data) {
+  public INode<T> addFront(T data) {
     return new Node<>(data, this);
   }
 
@@ -21,7 +21,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @return the newly created node
    */
   @Override
-  public iNode<T> addBack(T data) {
+  public INode<T> addBack(T data) {
     return addFront(data);
   }
 
@@ -32,7 +32,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @return the newly created node
    */
   @Override
-  public iNode<T> add(T data){
+  public INode<T> add(T data){
     return addFront(data);
   }
 
@@ -45,7 +45,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @throws IllegalArgumentException index out of range if we've reached the empty node
    */
   @Override
-  public iNode<T> add(T data, int index) throws IllegalArgumentException {
+  public INode<T> add(T data, int index) throws IllegalArgumentException {
     if (index == 0) {
       return addFront(data);
     }
@@ -57,7 +57,7 @@ public class EmptyNode<T> implements iNode<T> {
    * too far
    */
   @Override
-  public void addAll(iNode<T> head) {
+  public void addAll(INode<T> head) {
     throw new IllegalArgumentException("Invalid index provided");
   }
 
@@ -70,7 +70,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @throws IllegalArgumentException the item is not found
    */
   @Override
-  public iNode<T> remove(T data) throws IllegalArgumentException {
+  public INode<T> remove(T data) throws IllegalArgumentException {
     throw new IllegalArgumentException("Item does not exist");
   }
 
@@ -84,7 +84,7 @@ public class EmptyNode<T> implements iNode<T> {
    */
 
   @Override
-  public iNode<T> remove(int index) {
+  public INode<T> remove(int index) {
     throw new IllegalArgumentException("Item does not exist");
   }
 
@@ -111,7 +111,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @return an empty node
    */
   @Override
-  public <T> iNode<T> filter(Predicate<T> tester) {
+  public <T> INode<T> filter(Predicate<T> tester) {
     return new EmptyNode<>();
   }
 
@@ -128,12 +128,12 @@ public class EmptyNode<T> implements iNode<T> {
   }
 
   @Override
-  public iNode<T> getNext() {
+  public INode<T> getNext() {
     return null;
   }
 
   @Override
-  public void setNextNode(iNode<T> nextNode) {
+  public void setNextNode(INode<T> nextNode) {
     throw new IllegalStateException("Cannot add next to empty node");
   }
 
@@ -145,7 +145,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @param <R> the return type of the function
    */
   @Override
-  public <R> iNode<R> map(Function<T, R> converter) {
+  public <R> INode<R> map(Function<T, R> converter) {
     return new EmptyNode<>();
   }
 
@@ -165,7 +165,7 @@ public class EmptyNode<T> implements iNode<T> {
    * @return ""
    */
   @Override
-  public String printAll() {
+  public String printAll(int startIndex) {
     return this.toString();
   }
 }
