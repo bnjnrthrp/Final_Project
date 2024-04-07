@@ -134,12 +134,22 @@ public class WorkshopModelTest {
 
     ws.cutWood(0, 0, 6);
     ws.cutWood(0, 0, 0, 15);
+
+    int countBefore  = ws.getWoodInventory().count();
     ws.makeFurniture(Furniture.SmallStool);
 
     ADTList<Furniture> expected = new ADTList<Furniture>();
     expected.add(Furniture.SmallStool);
 
-    assertEquals(expected, ws.getFurniture());
+    int countAfter = ws.getWoodInventory().count();
+    assertEquals(4, countBefore - countAfter);
+
+    assertEquals(expected.toString(), ws.getFurniture().toString());
+  }
+
+  @Test (expected=IllegalStateException.class)
+  public void testMakeFurnitureInsufficient(){
+    ws.makeFurniture(Furniture.SmallStool);
   }
 
   @Test

@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 public class WorkshopModel implements iWorkshop{
   private int balance;
   private ADTList<Wood> woodInventory;
@@ -11,6 +14,7 @@ public class WorkshopModel implements iWorkshop{
     this.tools = new ADTList<Tool>();
     this.jigs = new ADTList<Jig>();
     this.furniture = new ADTList<Furniture>();
+
   }
 
   /**
@@ -158,8 +162,57 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void makeFurniture(Furniture furniture) throws IllegalStateException {
-    ADTList<Wood> test = woodInventory.filter(w -> (w.getShape().getDimensions() == Const.STOOL_LEGS));
-    System.out.println(test);
+    // Fold the inventory to ensure there are sufficient components
+    int legCount;
+    int topCount;
+
+    switch (furniture){
+      case SmallStool:
+        // Compares the dimensions of each component to the standard template via Arrays.equals
+        legCount = woodInventory.count(w-> Arrays.equals(w.getShape().getDimensions(), Const.STOOL_LEGS));
+        topCount = woodInventory.count(w-> Arrays.equals(w.getShape().getDimensions(), Const.STOOL_SEAT));
+        // If successful, loop through each component in the enum, remove it from the list
+        if (legCount >= Const.STOOL_NUM_LEGS && topCount >= Const.STOOL_NUM_SEATS){
+          for (int i = 0; i < furniture.getNumComponents(); i++){
+            woodInventory.remove(furniture.getComponents().get(i)); // Gets the corresponding component from the enum
+          }
+        } else {
+          throw new IllegalStateException(Const.ERROR_INSUFFICIENT_WOOD);
+        }
+        break;
+        // Looks at the case of a chair. Has a separate counter for back/front legs.
+      case Chair:
+        // Compares the dimensions of each component to the standard template via Arrays.equals
+        legCount = woodInventory.count(w-> Arrays.equals(w.getShape().getDimensions(), Const.CHAIR_BACK_LEGS));
+        int frontLegCount = woodInventory.count(w-> Arrays.equals(w.getShape().getDimensions(), Const.CHAIR_FRONT_LEGS));
+        topCount = woodInventory.count(w->Arrays.equals(w.getShape().getDimensions(), Const.CHAIR_SEAT));
+
+        if (legCount >= Const.CHAIR_NUM_BACK_LEGS
+            && frontLegCount >= Const.CHAIR_NUM_FRONT_LEGS
+            && topCount >= Const.STOOL_NUM_SEATS){
+          for (int i = 0; i < furniture.getNumComponents(); i++){
+            woodInventory.remove(furniture.getComponents().get(i)); // Gets the corresponding component from the enum
+          }
+        } else {
+          throw new IllegalStateException(Const.ERROR_INSUFFICIENT_WOOD);
+        }
+        break;
+      case Table:
+        // Compares the dimensions of each component to the standard template via Arrays.equals
+        legCount = woodInventory.count(w->Arrays.equals(w.getShape().getDimensions(), Const.TABLE_LEGS));
+        topCount = woodInventory.count(w->Arrays.equals(w.getShape().getDimensions(), Const.TABLE_TOP));
+
+        if (legCount >= Const.TABLE_NUM_LEGS && topCount >= Const.TABLE_NUM_TOPS){
+          for (int i = 0; i < furniture.getNumComponents(); i++){
+            woodInventory.remove(furniture.getComponents().get(i)); // Gets the corresponding component from the enum
+          }
+        } else {
+          throw new IllegalStateException(Const.ERROR_INSUFFICIENT_WOOD);
+        }
+        break;
+    }
+    // if all successful, then add the furniture piece to the collection.
+    this.furniture.add(furniture);
   }
 
   /**

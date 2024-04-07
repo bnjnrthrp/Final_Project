@@ -8,6 +8,7 @@ public enum Furniture {
 
   private int value;
   private ADTList<Wood> components;
+  private int numComponents;
 
   Furniture(int value, int composition){
     this.setValue(value);
@@ -28,17 +29,15 @@ public enum Furniture {
   }
 
   private void setComponents(int input){
-    ADTList<Wood> components = new ADTList<>();
+    this.components = new ADTList<>();
     switch (input){
       case 1:
-        // Builds components for a stool
         components.add(new DimensionalWood(Const.STOOL_LEGS));
         components.add(new DimensionalWood(Const.STOOL_LEGS));
         components.add(new DimensionalWood(Const.STOOL_LEGS));
         components.add(new Plywood(Const.STOOL_SEAT));
         break;
       case 2:
-        // Builds components for a chair
         components.add(new DimensionalWood(Const.CHAIR_FRONT_LEGS));
         components.add(new DimensionalWood(Const.CHAIR_FRONT_LEGS));
         components.add(new DimensionalWood(Const.CHAIR_BACK_LEGS));
@@ -46,13 +45,17 @@ public enum Furniture {
         components.add(new Plywood(Const.CHAIR_SEAT));
         break;
       case 3:
-        // Builds components for a table
         components.add(new DimensionalWood(Const.TABLE_LEGS));
         components.add(new DimensionalWood(Const.TABLE_LEGS));
         components.add(new DimensionalWood(Const.TABLE_LEGS));
         components.add(new DimensionalWood(Const.TABLE_LEGS));
         components.add(new Plywood(Const.TABLE_TOP));
     }
+    this.numComponents = components.count();
+  }
+
+  public int getNumComponents(){
+    return this.numComponents;
   }
 
   public ADTList<Wood> getComponents(){
