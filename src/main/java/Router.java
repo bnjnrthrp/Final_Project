@@ -47,6 +47,6 @@ public class Router extends Tool implements iCuttingTool{
     }
     ADTList<Wood> piece = wood.cut(0, size, true, cutShape.rectToRound);
     piece.get(0).makeSmooth();
-    return piece;
+    return ;
   }
 }

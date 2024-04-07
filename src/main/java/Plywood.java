@@ -73,7 +73,6 @@ public class Plywood extends Wood implements iCuttable<Wood> {
     // If the shape was already round, just cut to new size
     if (this.getShape() instanceof Round){
       this.getShape().setSingleDimension(sideIndex, newDimension);
-      piece.add(this, 0);
     } else {
       // else ensure the new Dimension (new diameter) won't exceed either the original width or length
       // of the first bit. You can't make a diameter of 4 if the original rectangle is 4x3
@@ -82,6 +81,7 @@ public class Plywood extends Wood implements iCuttable<Wood> {
         throw new IllegalStateException(Const.ERROR_DIMENSION_OOB); // For now, change nothing and add to the list
       } else {
         double[] newDims = {newDimension, dimensions[2]}; // Make a new diameter, and take old thickness
+        this.setShape(new Round(newDimension, dimensions[2]));
         Plywood newPiece = new Plywood(newDims);
         piece.add(newPiece, 0);
       }

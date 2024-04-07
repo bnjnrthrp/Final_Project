@@ -116,7 +116,26 @@ public class WorkshopModelTest {
   }
 
   @Test
-  public void makeFurniture() {}
+  public void testMakeFurniture() {
+    ws.goToWork();
+    ws.goToWork();
+    ws.goToWork();
+    ws.goToWork();
+    ws.goToWork();
+
+
+    ws.getJigs(0).unlock();
+    ws.getTools(0).unlock();
+    ws.getJigs(2).unlock();
+    ws.getTools(2).unlock();
+
+    ws.cutWood(0,2,2,15);
+    ws.cutWood(1,0,0, 13);
+    ws.cutWood(3,0,0, 13);
+    ws.cutWood(4,0,0, 13);
+
+    System.out.println(ws.getWoodInventory());
+  }
 
   @Test
   public void getWoodInventory() {

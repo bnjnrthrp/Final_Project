@@ -42,8 +42,6 @@ public class Round extends Shape {
    */
   public double getThickness() {return this.getSingleDimension(1);}
 
-  //TODO: getHash override
-
   /**
    * Tests for equality
    * @param obj the object to test
