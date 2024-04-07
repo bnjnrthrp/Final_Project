@@ -46,4 +46,25 @@ public class Const {
   public static final int VALUE_TOOL_MITER_SAW = 150;
   public static final int VALUE_WOOD_STANDARD_PLY = 40;
   public static final int VALUE_WOOD_STANDARD_2X4 = 10;
+
+  //Menu prompts
+  public static final String MENU_START = "Welcome to the shop";
+  public static final String MENU_GENERIC_TODO = "What would you like to do?";
+  public static final String MENU_WORK = "Go to work";
+  public static final String MENU_STORE = "Go to the store";
+  public static final String MENU_WORKSHOP = "Go to the workshop";
+  public static final String MENU_STORE_SUBMENU = "What would you like to buy?";
+  public static final String MENU_TOOLS = "Tools";
+  public static final String MENU_JIGS = "Jigs";
+  public static final String MENU_LUMBER = "Lumber";
+  public static final String MENU_TOOLS_SUBMENU = "Which tool would you like to purchase?";
+  public static final String MENU_JIGS_SUBMENU = "Which jig would you like to buy?";
+  public static final String MENU_LUMBER_SUBMENU = "What wood do you want to buy?";
+  public static final String MENU_PLYWOOD = "Plywood";
+  public static final String MENU_DIMENSIONAL = "Dimensional";
+  public static final String MENU_CUT = "Cut wood";
+  public static final String MENU_BUILD_FURNITURE = "Build furniture";
+  public static final String MENU_CUT_SUBMENU = "Which piece would you like to cut?";
+  public static final String MENU_BUILD_FURNITURE_SUBMENU = "What would you like to build?";
+  public static final String MENU_SEE_INVENTORY = "See inventory";
 }
