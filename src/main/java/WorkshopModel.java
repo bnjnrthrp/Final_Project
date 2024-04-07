@@ -77,10 +77,14 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void buyWood(WoodType type) {
-    if (type == WoodType.plywood){
+    if (type == WoodType.plywood && this.balance > Const.VALUE_WOOD_STANDARD_PLY){
       this.woodInventory.add(new Plywood());
-    } else if (type == WoodType.dimensional){
+      this.subtractMoney(Const.VALUE_WOOD_STANDARD_PLY);
+    } else if (type == WoodType.dimensional && this.balance > Const.VALUE_WOOD_STANDARD_2X4){
       this.woodInventory.add(new DimensionalWood());
+      this.subtractMoney(Const.VALUE_WOOD_STANDARD_2X4);
+    } else {
+      throw new IllegalStateException(Const.ERROR_INSUFFICIENT_FUNDS);
     }
   }
 
@@ -96,7 +100,11 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void unlockTool(iUnlockable tool) throws IllegalStateException {
+    if (this.balance < tool.getValue()){
+      throw new IllegalStateException(Const.ERROR_INSUFFICIENT_FUNDS);
+    }
     tool.unlock();
+    this.subtractMoney(tool.getValue());
   }
 
   /**
@@ -115,21 +123,6 @@ public class WorkshopModel implements iWorkshop{
     } catch (IllegalArgumentException | IllegalStateException e) {
       throw e;
     }
-
-
-
-    // Get the specified wood and tool
-//    Wood wood = this.woodInventory.remove(woodIndex);
-//    iCuttingTool tool = this.getTools(toolIndex);
-//    try {
-//      // Try to cut the wood and add the two pieces back into the inventory
-//      this.woodInventory.addAll(woodIndex, tool.cut(wood, newSize));
-//    } catch (IllegalArgumentException | IllegalStateException e){
-//      // If an error, return the wood back to its original spot
-//      this.woodInventory.add(woodIndex, wood);
-//      // Pass the error back to the controller.
-//      throw e;
-//    }
   }
 
   /**
@@ -143,31 +136,17 @@ public class WorkshopModel implements iWorkshop{
    */
   @Override
   public void cutWood(int woodIndex, int toolIndex, int jigIndex, double newSize) {
+    // Get the indices for the tools and jig
     iCuttingTool tool = this.getTools(toolIndex);
     Jig jig = this.getJigs(jigIndex);
 
+    // Attempt to cut the wood and add the remainder to the inventory.
     try {
       woodInventory.addAll(tool.cut(woodInventory.get(woodIndex), jig, newSize));
     } catch (IllegalArgumentException | IllegalStateException e) {
+      // If an error, send it back to the controller.
       throw e;
     }
-
-
-    //    // Get the wood, tool and jig
-//    Wood wood = this.woodInventory.remove(woodIndex);
-//    iCuttingTool tool = this.getTools(toolIndex);
-//    Jig jig = this.getJigs(jigIndex);
-//    // Try to cut the wood and add it back to the inventory
-//    try {
-//      // Try to cut the wood and add the two pieces back into the inventory
-//      this.woodInventory.addAll(woodIndex, tool.cut(wood, jig, newSize));
-//    } catch (IllegalArgumentException | IllegalStateException e){
-//      // Otherwise, return the wood
-//      // If an error, return the wood back to its original spot
-//      this.woodInventory.add(woodIndex, wood);
-//      // Pass the error back to the controller.
-//      throw e;
-//    }
   }
 
   /**
