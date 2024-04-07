@@ -9,7 +9,6 @@ public class ToolTest {
 
   TableSaw tableSaw;
   MiterSaw miterSaw;
-  Router router;
   ArrayList<Tool> toolInventory;
 
 
@@ -21,12 +20,10 @@ public class ToolTest {
   public void setUp() {
     tableSaw = new TableSaw();
     miterSaw = new MiterSaw();
-    router = new Router();
 
     toolInventory = new ArrayList<>();
     toolInventory.add(tableSaw);
     toolInventory.add(miterSaw);
-    toolInventory.add(router);
 
     inventory = new ArrayList<>();
     ply1 = new Plywood();
@@ -41,12 +38,10 @@ public class ToolTest {
       // Test tools
       assertEquals(Const.VALUE_TOOL_TABLE_SAW, tableSaw.getValue());
 
-      assertEquals(Const.VALUE_TOOL_ROUTER, router.getValue());
 
       // Test jigs
       assertEquals(Const.VALUE_JIG_CROSSCUT_SLED, Jig.crossCutSled.getValue());
 
-      assertEquals(Const.VALUE_JIG_CIRCLECUT, Jig.circleCut.getValue());
     }
 
   @Test

@@ -63,11 +63,9 @@ public class WorkshopModel implements iWorkshop{
   public void loadWorkshop() {
     this.tools.add(new TableSaw());
     this.tools.add(new MiterSaw());
-    this.tools.add(new Router());
 
     this.jigs.add(Jig.crossCutSled);
     this.jigs.add(Jig.tapeMeasure);
-    this.jigs.add(Jig.circleCut);
   }
 
   /**

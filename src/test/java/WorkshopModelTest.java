@@ -8,7 +8,6 @@ public class WorkshopModelTest {
 
   TableSaw tableSaw;
   MiterSaw miterSaw;
-  Router router;
 
   ADTList<Wood> woodInventory;
   ADTList<Tool> tools;
@@ -35,12 +34,10 @@ public class WorkshopModelTest {
     assertEquals(150, ws.getBalance());
     TableSaw ts = new TableSaw();
     MiterSaw ms = new MiterSaw();
-    Router rt = new Router();
 
     ADTList<Tool> toolShed = new ADTList<>();
     toolShed.add(ts);
     toolShed.add(ms);
-    toolShed.add(rt);
 
     // Uses to string as the two arrays will be different, but contents equal
     assertEquals(toolShed.toString(), ws.getTools().toString());
@@ -126,13 +123,10 @@ public class WorkshopModelTest {
 
     ws.getJigs(0).unlock();
     ws.getTools(0).unlock();
-    ws.getJigs(2).unlock();
-    ws.getTools(2).unlock();
 
-    ws.cutWood(0,2,2,15);
     ws.cutWood(1,0,0, 13);
+    ws.cutWood(2,0,0, 13);
     ws.cutWood(3,0,0, 13);
-    ws.cutWood(4,0,0, 13);
 
     System.out.println(ws.getWoodInventory());
   }
@@ -151,7 +145,6 @@ public class WorkshopModelTest {
     ADTList<Tool> expected = new ADTList<>();
     expected.add(new TableSaw());
     expected.add(new MiterSaw());
-    expected.add(new Router());
 
     assertEquals(expected.toString(), ws.getTools().toString());
   }
@@ -161,7 +154,6 @@ public class WorkshopModelTest {
     ADTList<Jig> expected = new ADTList<>();
     expected.add(Jig.crossCutSled);
     expected.add(Jig.tapeMeasure);
-    expected.add(Jig.circleCut);
 
     assertEquals(expected.toString(), ws.getJigs().toString());
   }

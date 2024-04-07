@@ -4,7 +4,6 @@
  */
 
 public enum Jig implements iUnlockable{
-  circleCut(Const.VALUE_JIG_CIRCLECUT),
   crossCutSled(Const.VALUE_JIG_CROSSCUT_SLED),
   tapeMeasure(Const.VALUE_JIG_TAPE_MEASURE);
 
