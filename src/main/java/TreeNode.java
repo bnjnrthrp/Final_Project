@@ -34,4 +34,11 @@ public class TreeNode<T> extends AbstractTreeNode<T> {
     }
     return result;
   }
+
+  @Override
+  public ArrayList<T> getChildren(){
+    return (ArrayList<T>) this.children;
+  }
+
+
 }

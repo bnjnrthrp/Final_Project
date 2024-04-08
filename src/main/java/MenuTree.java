@@ -1,4 +1,4 @@
-import java.util.function.Predicate;
+import java.util.ArrayList;
 
 public class MenuTree implements IMenuTree{
   private ITreeNode<Menu> root;
@@ -19,13 +19,9 @@ public class MenuTree implements IMenuTree{
     root = root.addChild(m -> m.getTitle().equals(prevMenu.getTitle()), newMenu);
   }
 
-  /**
-   * Print the contents of the menu based on the Predicate
-   *
-   * @param tester the test to identify the menu
-   */
   @Override
-  public void printMenu(Predicate<Menu> tester) {
-
+  public ArrayList<Menu> getChildren(){
+    return root.getChildren();
   }
+
 }

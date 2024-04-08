@@ -65,6 +65,11 @@ public class Const {
   public static final String MENU_CUT = "Cut wood";
   public static final String MENU_BUILD_FURNITURE = "Build furniture";
   public static final String MENU_CUT_SUBMENU = "Which piece would you like to cut?";
+  public static final String MENU_CUT_TOOL_SUBMENU = "Which tool would you like to use?";
+  public static final String MENU_CUT_JIG_SUBMENU = "Which jig would you like to use?";
+  public static final String MENU_CUT_DIMENSION_SUBMENU = "What is the dimension you want to cut it to?";
   public static final String MENU_BUILD_FURNITURE_SUBMENU = "What would you like to build?";
   public static final String MENU_SEE_INVENTORY = "See inventory";
+  public static final String MENU_SHOW_WOOD = "Current wood inventory:";
+  public static final String MENU_CHOOSE_WOOD = "Which piece do you want to cut?";
 }

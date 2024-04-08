@@ -8,7 +8,12 @@ public enum MenuCategories {
   lumber(Const.MENU_LUMBER, Const.MENU_LUMBER_SUBMENU),
   cutWood(Const.MENU_CUT, Const.MENU_CUT_SUBMENU),
   buildFurniture(Const.MENU_BUILD_FURNITURE, Const.MENU_BUILD_FURNITURE_SUBMENU),
-  displayInventory(Const.MENU_SEE_INVENTORY, Const.MENU_GENERIC_TODO);
+  displayInventory(Const.MENU_SEE_INVENTORY, Const.MENU_GENERIC_TODO),
+  chooseWood(Const.MENU_SHOW_WOOD, Const.MENU_CHOOSE_WOOD),
+  chooseTool(Const.MENU_TOOLS, Const.MENU_CUT_TOOL_SUBMENU),
+  chooseJig(Const.MENU_JIGS, Const.MENU_CUT_JIG_SUBMENU),
+  chooseDimension(Const.MENU_LUMBER, Const.MENU_CUT_DIMENSION_SUBMENU);
+
 
   private String title;
   private String subMenu;

@@ -9,6 +9,6 @@ public abstract class Tool extends Unlockable implements ICuttingTool, IUnlockab
   };
   @Override
   public String toString(){
-    return "Tool: %s, Value: %d, Unlocked: %b".formatted(this.getClass().getSimpleName(), this.getValue(), this.isUnlocked());
+    return "%s, Value: %d, Unlocked: %b".formatted(this.getClass().getSimpleName(), this.getValue(), this.isUnlocked());
   }
 }

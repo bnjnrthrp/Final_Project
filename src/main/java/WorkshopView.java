@@ -1,4 +1,5 @@
 import java.io.PrintStream;
+import java.util.List;
 
 public class WorkshopView<T> implements IView<T> {
   private PrintStream out;
@@ -15,7 +16,7 @@ public class WorkshopView<T> implements IView<T> {
 
   @Override
   public void showADTList(ADTList<T> list) {
-    out.println(list.getClass().getSimpleName() + "\n" + list);
+    out.println(list);
   }
 
   @Override
@@ -24,12 +25,39 @@ public class WorkshopView<T> implements IView<T> {
   }
 
   @Override
-  public void showOptions() {
+  public void showMenu(Menu menu){
+    out.println(menu.getTitle());
+  }
 
+  @Override
+  public void showList(List<T> list) {
+    for (int i = 0; i < list.size(); i++){
+      out.println("%d: %s".formatted(i, list.get(i).toString()));
+    }
+  }
+
+  @Override
+  public void showOptions(Menu menu) {
+    out.println(menu.getSubMenu());
   }
 
   @Override
   public void showInt(int number){
     out.println("Balance: " + number);
   }
+
+  @Override
+  public void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood,
+      ADTList<Furniture> furniture) {
+    out.println("Account Balance: " + number);
+    out.println();
+    out.println("Tools:\n" + tools);
+    out.println();
+    out.println("Jigs:\n" + jigs);
+    out.println();
+    out.println("Wood:\n" + wood);
+    out.println();
+    out.println("Furniture:\n" + furniture);
+  }
+
 }

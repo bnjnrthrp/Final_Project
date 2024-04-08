@@ -9,6 +9,11 @@ public class LeafNode<T> extends AbstractTreeNode<T>{
   }
 
   @Override
+  public ArrayList<T> getChildren() {
+    return null;
+  }
+
+  @Override
   public ITreeNode<T> addChild(Predicate<T> identifier, ITreeNode<T> child) {
     if (identifier.test(data)) {
       // promote this to a group tree node
@@ -25,4 +30,7 @@ public class LeafNode<T> extends AbstractTreeNode<T>{
     result.add(this.data);
     return result;
   }
+
+  // Todo: Add to string method
+
 }

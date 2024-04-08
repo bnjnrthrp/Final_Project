@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public interface IMenuTree {
@@ -9,9 +10,5 @@ public interface IMenuTree {
    */
   void addMenu(Menu menu, Menu prevMenu);
 
-  /**
-   * Print the contents of the menu based on the Predicate
-   * @param tester the test to identify the menu
-   */
-  void printMenu(Predicate<Menu> tester);
+  ArrayList<Menu> getChildren();
 }
