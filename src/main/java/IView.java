@@ -7,7 +7,10 @@ public interface IView<T> {
   void showMenu(Menu menu);
   void showList(List<T> list);
   void showOptions(Menu menu);
-  void showInt(int number);
+  void showInt(int num);
+  void showError(Exception e);
+
+  void cueInput();
   void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood, ADTList<Furniture> furniture);
 
 }

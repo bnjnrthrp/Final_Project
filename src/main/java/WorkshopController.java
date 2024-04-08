@@ -2,17 +2,17 @@ import java.util.Scanner;
 import java.io.InputStream;
 
 public class WorkshopController implements IController {
-  private Scanner in;
-  private IView view;
-  private IModel model;
+  private final Scanner in;
+  private final IView view;
+  private final IModel model;
 
-  public WorkshopController(IModel model, InputStream in, IView viewer){
+  public WorkshopController(IModel model, InputStream in, IView viewer) {
     this.model = model;
     this.view = viewer;
     this.in = new Scanner(in);
   }
 
-  public void go(){
+  public void go() {
     boolean exit = false;
     model.loadWorkshop();
     // Initialize and create the menu
@@ -20,41 +20,100 @@ public class WorkshopController implements IController {
     MenuTree menu = new MenuTree(main);
     createMenu(menu);
 
-    view.showAll(model.getBalance(),
+    view.showAll(
+        model.getBalance(),
         model.getTools(),
         model.getJigs(),
         model.getWoodInventory(),
         model.getFurniture());
-    view.showMenu(main);
-    MenuTree current = menu;
-    int choice = 0;
-    int wood;
-    int tool;
-    int jig;
-    double size;
-    while (!exit){
-      view.showOptions(main);
-      view.showList(menu.getChildren());
-      choice = in.nextInt();
-      System.out.println("choice was : " + choice);
+
+    // Enter the main loop - keeps the program running
+    while (!exit) {
+      // Show the menu
+      view.showMenu(main);
+      // Keep track of the current location within the menu hierarchy, set to main menu
+      MenuTree current = menu;
+      // Initialize the arguments
+      int choice = 0;
+      int wood;
+      int tool;
+      int jig;
+      double size;
+
+      // Enter the second loop - this will navigate the submenus and allow a return back to the main
+      // menu
+      while (!exit) {
+        view.showOptions(main);
+        view.showList(menu.getChildren());
+        view.cueInput();
+        choice = in.nextInt();
+
+        //// Entering the main menu - options are to work, go to the store, or go to the workshop
+        try {
+          switch (choice) {
+            case -2: exit = true;
+              // cascades into the next case.
+            case -1: break;
+
+            case 0:
+              model.goToWork();
+              view.showInt(model.getBalance());
+              break;
+
+            case 1:
+              current = current.getChild(1);
+              /** Go to the store - have the option to buy tools, jigs, or wood */
+              view.showMenu(current.getMenu());
+              view.showOptions(current.getMenu());
+              view.showList(current.getChildren());
+              view.cueInput();
+              choice = in.nextInt();
+
+              try {
+                switch (choice){
+                  // buy tools
+                  case 0:
+                  // Buy jigs
+                  case 1:
+                  // Buy lumber
+                  case 2:
+
+                  default: throw new IndexOutOfBoundsException(Const.ERROR_INVALID_INDEX);
+                }
+              } catch (IndexOutOfBoundsException e) {
+                view.showError(e);
+              }
 
 
+              System.out.println("chose 1");
+              break;
 
+            case 2:
+              current = current.getChild(2);
+              System.out.println("chose 2");
+              break;
 
+            default:
+              throw new IndexOutOfBoundsException(Const.ERROR_INVALID_INDEX);
 
-      exit = true;
-
+          }
+        } catch (IndexOutOfBoundsException e) {
+          view.showError(e);
+        }
+        if (choice == -1) {
+          break;
+        }
+      }
     }
-
   }
 
-  public static void createMenu(IMenuTree menu){
+  public static void createMenu(IMenuTree menu) {
     Menu main = new Menu(MenuCategories.mainMenu);
     Menu work = new Menu(MenuCategories.work);
     Menu store = new Menu(MenuCategories.buy);
     Menu workshop = new Menu(MenuCategories.workshop);
     Menu tools = new Menu(MenuCategories.tools);
-    Menu jigs  = new Menu(MenuCategories.jigs);
+    Menu jigs = new Menu(MenuCategories.jigs);
     Menu lumber = new Menu(MenuCategories.lumber);
     Menu cutWood = new Menu(MenuCategories.cutWood);
     Menu buildFurniture = new Menu(MenuCategories.buildFurniture);
@@ -63,8 +122,6 @@ public class WorkshopController implements IController {
     Menu chooseTool = new Menu(MenuCategories.chooseTool);
     Menu chooseJig = new Menu(MenuCategories.chooseJig);
     Menu chooseDimension = new Menu(MenuCategories.chooseDimension);
-
-
 
     menu.addMenu(work, main);
     menu.addMenu(store, main);
@@ -82,6 +139,5 @@ public class WorkshopController implements IController {
     menu.addMenu(chooseTool, chooseWood);
     menu.addMenu(chooseJig, chooseTool);
     menu.addMenu(chooseDimension, chooseJig);
-
   }
 }

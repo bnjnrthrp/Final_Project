@@ -11,6 +11,8 @@ public class TreeNode<T> extends AbstractTreeNode<T> {
     this.children = new ArrayList<ITreeNode<T>>();
   }
 
+  public T getData(){return this.data;}
+
   @Override
   public ITreeNode<T> addChild(Predicate<T> identifier, ITreeNode<T> child) {
     if (identifier.test(this.data)){
@@ -40,5 +42,12 @@ public class TreeNode<T> extends AbstractTreeNode<T> {
     return (ArrayList<T>) this.children;
   }
 
+  @Override
+  public ITreeNode<T> getChild(int index){return (ITreeNode<T>) this.getChildren().get(index);}
+
+  @Override
+  public String toString(){
+    return this.data.toString();
+  }
 
 }

@@ -9,6 +9,11 @@ public class LeafNode<T> extends AbstractTreeNode<T>{
   }
 
   @Override
+  public T getData(){
+    return this.data;
+  }
+
+  @Override
   public ArrayList<T> getChildren() {
     return null;
   }
@@ -31,6 +36,14 @@ public class LeafNode<T> extends AbstractTreeNode<T>{
     return result;
   }
 
-  // Todo: Add to string method
+  @Override
+  public ITreeNode<T> getChild(int index) throws NullPointerException {
+    throw new NullPointerException(Const.ERROR_NO_SUBMENU);
+  }
+
+  @Override
+  public String toString(){
+    return this.data.toString();
+  }
 
 }

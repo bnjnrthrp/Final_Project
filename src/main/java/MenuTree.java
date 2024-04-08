@@ -7,6 +7,10 @@ public class MenuTree implements IMenuTree{
     root = new LeafNode<>(menu);
   }
 
+  public MenuTree(ITreeNode<Menu> menu){
+    root = menu;
+  }
+
   /**
    * Add a submenu to another menu.
    *
@@ -22,6 +26,16 @@ public class MenuTree implements IMenuTree{
   @Override
   public ArrayList<Menu> getChildren(){
     return root.getChildren();
+  }
+
+  @Override
+  public MenuTree getChild(int index){
+    return new MenuTree(root.getChild(index));
+  }
+
+  @Override
+  public Menu getMenu(){
+    return root.getData();
   }
 
 }

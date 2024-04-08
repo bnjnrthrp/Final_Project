@@ -6,4 +6,7 @@ public interface ITreeNode<T> {
   ITreeNode<T> addChild(Predicate<T> identifier, ITreeNode<T> child);
   List<T> toList();
   ArrayList<T> getChildren();
+  ITreeNode<T> getChild(int index);
+
+  T getData();
 }

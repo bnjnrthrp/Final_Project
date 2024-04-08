@@ -14,4 +14,9 @@ public class Menu {
   public String getSubMenu(){
     return this.subMenu;
   }
+
+  @Override
+  public String toString(){
+    return this.title;
+  }
 }

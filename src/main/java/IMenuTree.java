@@ -11,4 +11,8 @@ public interface IMenuTree {
   void addMenu(Menu menu, Menu prevMenu);
 
   ArrayList<Menu> getChildren();
+
+  MenuTree getChild(int index);
+
+  Menu getMenu();
 }
