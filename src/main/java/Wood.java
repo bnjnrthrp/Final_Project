@@ -71,6 +71,6 @@ public abstract class Wood implements ICuttable<Wood> {
    */
   @Override
   public String toString(){
-    return "Type: %s, %s".formatted(this.getType(), this.getShape().toString());
+    return "Type: %s, %s\n".formatted(this.getType(), this.getShape().toString());
   }
 }

@@ -64,6 +64,6 @@ public enum Jig implements IUnlockable {
 
   @Override
   public String toString(){
-    return "%s, Value: %d, Unlocked: %b".formatted(this.name(), this.getValue(), this.isUnlocked());
+    return "%s, Value: %d, Unlocked: %b\n".formatted(this.name(), this.getValue(), this.isUnlocked());
   }
 }

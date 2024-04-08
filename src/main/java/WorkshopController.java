@@ -1,7 +1,11 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Scanner;
 import java.io.InputStream;
 
-public class WorkshopController implements IController {
+public class WorkshopController implements IController, ActionListener {
   private final Scanner in;
   private final IView view;
   private final IModel model;
@@ -10,6 +14,8 @@ public class WorkshopController implements IController {
     this.model = model;
     this.view = viewer;
     this.in = new Scanner(in);
+    view.setListener(this);
+
   }
 
   public void go() {
@@ -140,4 +146,17 @@ public class WorkshopController implements IController {
     menu.addMenu(chooseJig, chooseTool);
     menu.addMenu(chooseDimension, chooseJig);
   }
+
+  /**
+   * Invoked when an action occurs.
+   *
+   * @param e the event to be processed
+   */
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    switch (e.getActionCommand()){
+
+    }
+  }
+
 }

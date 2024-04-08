@@ -1,5 +1,7 @@
+import java.awt.event.ActionListener;
 import java.io.PrintStream;
 import java.util.List;
+import javax.swing.JTextField;
 
 public class WorkshopView<T> implements IView<T> {
   private PrintStream out;
@@ -19,6 +21,26 @@ public class WorkshopView<T> implements IView<T> {
   public void showString(String str) {
     out.println(str);
     out.println();
+  }
+
+  @Override
+  public void setListener(ActionListener listener) {
+
+  }
+
+  @Override
+  public int getInputField(JTextField field) {
+    return 0;
+  }
+
+  @Override
+  public void clearInputFields() {
+
+  }
+
+  @Override
+  public String ADTListToString(ADTList<T> list) {
+    return null;
   }
 
   @Override
@@ -59,19 +81,24 @@ public class WorkshopView<T> implements IView<T> {
         + "Enter input: ");
   }
 
-  @Override
+
   public void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood,
       ADTList<Furniture> furniture) {
-    out.println("Account Balance: " + number);
-    out.println();
-    out.println("Tools:\n" + tools);
-    out.println();
-    out.println("Jigs:\n" + jigs);
-    out.println();
-    out.println("Wood:\n" + wood);
-    out.println();
-    out.println("Furniture:\n" + furniture);
-    out.println();
+//    out.println("Account Balance: " + number);
+//    out.println();
+//    out.println("Tools:\n" + tools);
+//    out.println();
+//    out.println("Jigs:\n" + jigs);
+//    out.println();
+//    out.println("Wood:\n" + wood);
+//    out.println();
+//    out.println("Furniture:\n" + furniture);
+//    out.println();
+  }
+
+  @Override
+  public void display() {
+
   }
 
 }
