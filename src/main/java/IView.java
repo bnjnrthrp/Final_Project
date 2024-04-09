@@ -7,6 +7,7 @@
  */
 
 import java.awt.event.ActionListener;
+import javax.swing.JTextArea;
 
 public interface IView<T> {
   void setListener(ActionListener listener);
@@ -20,6 +21,8 @@ public interface IView<T> {
   double getDimensionField();
 
   int getFurnitureField();
+
+  void displayMessage(String s);
 
   void clearInputFields();
 

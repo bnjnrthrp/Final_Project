@@ -19,8 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class WorkshopView<T> extends JFrame implements IView<T>{
-  private JLabel display, accountDisplay, chooseToolLabel, chooseJigLabel, chooseWoodLabel, chooseDimLabel, chooseFurnitureLabel;
-  private JTextArea toolDisplay, jigDisplay, woodDisplay, furnitureDisplay, blueprintDisplay;
+  private JLabel display, accountDisplay, chooseToolLabel, chooseJigLabel, chooseWoodLabel, chooseDimLabel, chooseFurnitureLabel, messageDisplayLabel;
+  private JTextArea toolDisplay, jigDisplay, woodDisplay, furnitureDisplay, blueprintDisplay, messageDisplay;
   private JButton exitButton, goToWork, buyPlywood, buyDimensional, buyTool, buyJig, cutWood, makeFurniture;
   private JTextField inputTool, inputWood, inputJig, inputFurniture, inputDimension;
 
@@ -47,8 +47,8 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     JPanel buyJigPanel = new JPanel();
     JPanel workshopPanel = new JPanel();
     JPanel blueprintDisplayPanel = new JPanel();
-    JPanel makeFurniturePanel = new JPanel();
     JPanel createdFurniturePanel = new JPanel();
+    JPanel messagePanel = new JPanel();
     JPanel exitPanel = new JPanel();
 
     // Arrange the panels into a 3x4 grid
@@ -62,6 +62,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     chooseWoodLabel = new JLabel("Enter wood index");
     chooseDimLabel = new JLabel("Enter dimension");
     chooseFurnitureLabel = new JLabel("Enter furniture index");
+    messageDisplayLabel = new JLabel("Message: ");
 
     // Add to account panel
     accountPanel.add(display);
@@ -125,18 +126,21 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     blueprintDisplay = new JTextArea("Furniture available to Make");
     blueprintDisplay.setLineWrap(true);
     blueprintDisplayPanel.add(blueprintDisplay);
-
-    //make furniture panel
-    makeFurniturePanel.add(chooseFurnitureLabel);
+    blueprintDisplayPanel.add(chooseFurnitureLabel);
     inputFurniture = new JTextField(2);
-    makeFurniturePanel.add(inputFurniture);
+    blueprintDisplayPanel.add(inputFurniture);
     makeFurniture = new JButton("Make Furniture");
     makeFurniture.setActionCommand("makeFurniture");
-    makeFurniturePanel.add(makeFurniture);
+    blueprintDisplayPanel.add(makeFurniture);
 
     // created furniture panel
     furnitureDisplay = new JTextArea("Made furniture");
     createdFurniturePanel.add(furnitureDisplay);
+
+    //make furniture panel
+    messageDisplay = new JTextArea("Message");
+    messageDisplay.setLineWrap(true);
+    messagePanel.add(messageDisplay);
 
     //exit button
     exitButton = new JButton("Exit");
@@ -153,8 +157,8 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     this.add(buyJigPanel);
     this.add(workshopPanel);
     this.add(blueprintDisplayPanel);
-    this.add(makeFurniturePanel);
     this.add(createdFurniturePanel);
+    this.add(messagePanel);
     this.add(exitPanel);
 
     // Set the panel to visible
@@ -244,6 +248,11 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
    */
   private void setInputField(JTextField field, String s){
     field.setText(s);
+  }
+
+  @Override
+  public void displayMessage(String s){
+    messageDisplay.setText(s);
   }
 
   /**
