@@ -62,4 +62,12 @@ public enum Furniture {
     return this.components;
   }
 
+  public static ADTList<Furniture> getBlueprints() {
+    ADTList<Furniture> result = new ADTList<>();
+    for (Furniture piece : Furniture.values()){
+      result.add(piece);
+    }
+    return result;
+  }
+
 }

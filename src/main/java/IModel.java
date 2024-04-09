@@ -97,6 +97,8 @@ public interface IModel {
    */
   public ADTList<Jig> getJigs();
 
+  ADTList<Furniture> getBlueprints();
+
   /**
    * Returns a specific jig from an index
    * @param index the index of the desired jig

@@ -6,6 +6,7 @@ public class WorkshopModel implements IModel {
   private ADTList<Tool> tools;
   private ADTList<Jig> jigs;
   private ADTList<Furniture> furniture;
+  private ADTList<Furniture> blueprints;
 
   public WorkshopModel(){
     this.balance = 0;
@@ -13,6 +14,7 @@ public class WorkshopModel implements IModel {
     this.tools = new ADTList<Tool>();
     this.jigs = new ADTList<Jig>();
     this.furniture = new ADTList<Furniture>();
+    this.blueprints = new ADTList<Furniture>();
 
   }
 
@@ -61,6 +63,8 @@ public class WorkshopModel implements IModel {
 
     this.jigs.add(Jig.crossCutSled);
     this.jigs.add(Jig.tapeMeasure);
+
+    this.blueprints = Furniture.getBlueprints();
   }
 
   /**
@@ -248,6 +252,11 @@ public class WorkshopModel implements IModel {
   @Override
   public ADTList<Jig> getJigs() {
     return this.jigs;
+  }
+
+  @Override
+  public ADTList<Furniture> getBlueprints(){
+    return this.blueprints;
   }
 
   /**
