@@ -1,7 +1,4 @@
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -11,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.lang.StringBuilder;
-import javax.swing.ScrollPaneLayout;
 
 public class JFrameView<T> extends JFrame implements IView<T>{
   private JLabel display, accountDisplay;
@@ -42,7 +37,6 @@ public class JFrameView<T> extends JFrame implements IView<T>{
 
     this.setLayout(new GridLayout(3, 4, 0, 0));
 
-//    accountPanel.setLayout(new GridLayout(3, 0));
     // Add to account panel
     display = new JLabel("Welcome to the Woodshop");
     accountPanel.add(display);
@@ -67,7 +61,7 @@ public class JFrameView<T> extends JFrame implements IView<T>{
     woodDisplayPanel.add(woodDisplay);
 
 
-    // Add store interface - ply and idmensional
+    // Add store interface - ply and dimensional
     buyWood = new JButton("Buy Plywood");
     buyWood.setActionCommand("buyPlywood");
     storePanel.add(buyWood);
@@ -113,21 +107,20 @@ public class JFrameView<T> extends JFrame implements IView<T>{
     //make furniture
     // input field furniture
     inputFurniture = new JTextField(2);
-    workshopPanel.add(inputFurniture);
+    makeFurniturePanel.add(inputFurniture);
     makeFurniture = new JButton("Make Furniture");
     makeFurniture.setActionCommand("makeFurniture");
     makeFurniturePanel.add(makeFurniture);
 
     // made furniture display
     furnitureDisplay = new JTextArea("Made furniture");
-    furnitureDisplayPanel.add(furnitureDisplay);
     createdFurniturePanel.add(furnitureDisplay);
 
     //exit button
     exitButton = new JButton("Exit");
-    exitButton.setActionCommand("Exit Button");
+    exitButton.setActionCommand("exit");
     exitPanel.add(exitButton);
-    workshopPanel.add(furnitureDisplay);
+
     // pack();
 
     this.add(accountPanel);
@@ -168,15 +161,48 @@ public class JFrameView<T> extends JFrame implements IView<T>{
     this.makeFurniture.addActionListener(click);
   }
 
-  @Override
-  public int getInputField(JTextField field) {
+  private int getInputField(JTextField field) {
     String input = field.getText();
-    return Integer.getInteger(input);
+    return Integer.parseInt(input);
+  }
+
+  @Override
+  public int getToolField(){
+    return getInputField(inputTool);
+  }
+
+  @Override
+  public int getJigField(){
+    return getInputField(inputJig);
+  }
+
+  @Override
+  public int getWoodField(){
+    return getInputField(inputWood);
+  }
+
+  @Override
+  public double getDimensionField(){
+    String input = inputDimension.getText();
+    return Double.parseDouble(input);
+  }
+
+  @Override
+  public int getFurnitureField(){
+    return getInputField(inputFurniture);
+  }
+
+  private void setInputField(JTextField field, String s){
+    field.setText(s);
   }
 
   @Override
   public void clearInputFields() {
-
+    setInputField(inputTool, "");
+    setInputField(inputJig, "");
+    setInputField(inputWood, "");
+    setInputField(inputFurniture, "");
+    setInputField(inputDimension, "");
   }
 
   @Override

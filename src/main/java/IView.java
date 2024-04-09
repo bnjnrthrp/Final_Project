@@ -14,7 +14,18 @@ public interface IView<T> {
   void cueInput();
   void display();
   void setListener(ActionListener listener);
-  int getInputField(JTextField field);
+
+
+  int getToolField();
+
+  int getJigField();
+
+  int getWoodField();
+
+  double getDimensionField();
+
+  int getFurnitureField();
+
   void clearInputFields();
   String ADTListToString(ADTList<T> list);
   void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood,

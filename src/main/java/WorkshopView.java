@@ -28,8 +28,30 @@ public class WorkshopView<T> implements IView<T> {
 
   }
 
+
+
   @Override
-  public int getInputField(JTextField field) {
+  public int getToolField() {
+    return 0;
+  }
+
+  @Override
+  public int getJigField() {
+    return 0;
+  }
+
+  @Override
+  public int getWoodField() {
+    return 0;
+  }
+
+  @Override
+  public double getDimensionField() {
+    return 0;
+  }
+
+  @Override
+  public int getFurnitureField() {
     return 0;
   }
 
