@@ -20,7 +20,6 @@ public class Plywood extends Wood implements ICuttable<Wood> {
     this.shape = new Rectangle(dimensions[0], dimensions[1], dimensions[2]);
     } else {
     this.shape = new Round(dimensions[0], dimensions[1]);
-
     }
   }
 

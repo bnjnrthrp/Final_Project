@@ -26,9 +26,6 @@ public interface INode<T> {
 
   T get(int index);
 
-  INode<T> getNext();
-
-  void setNextNode(INode<T> nextNode);
   @Override
   String toString();
 

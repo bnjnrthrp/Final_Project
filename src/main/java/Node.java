@@ -34,24 +34,6 @@ public class Node<T> implements INode<T> {
   }
 
   /**
-   * Gets the node that this node points to.
-   * @return the next node.
-   */
-  @Override
-  public INode<T> getNext(){
-    return this.nextNode;
-  }
-
-  /**
-   * Sets the next node to a provided node.
-   * @param nextNode The new node to connected to the list.
-   */
-  @Override
-  public void setNextNode(INode<T> nextNode){
-    this.nextNode = nextNode;
-  }
-
-  /**
    * Adds a node to the front of the current node
    *
    * @param data the data to add to the new node

@@ -127,16 +127,6 @@ public class EmptyNode<T> implements INode<T> {
     return null;
   }
 
-  @Override
-  public INode<T> getNext() {
-    return null;
-  }
-
-  @Override
-  public void setNextNode(INode<T> nextNode) {
-    throw new IllegalStateException("Cannot add next to empty node");
-  }
-
   /**
    * Applies a converter function to the node and transforms the data
    *

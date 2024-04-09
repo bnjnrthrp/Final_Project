@@ -6,7 +6,6 @@
 public abstract class Wood implements ICuttable<Wood> {
   protected Shape shape;
   protected final WoodType type;
-  protected boolean smooth = false;
 
   public Wood(WoodType type){
     this.type = type;
@@ -43,17 +42,6 @@ public abstract class Wood implements ICuttable<Wood> {
     return this.shape;
   }
 
-  /**
-   * Adjusts the surface from rough to smooth
-   */
-  public void makeSmooth() {this.smooth = true;}
-
-  /**
-   * getter for is smooth instance variable
-   * @return boolean, true if the edge is smooth
-   */
-  public boolean isSmooth() {return this.smooth;}
-
   public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate);
 
   @Override
@@ -62,7 +50,7 @@ public abstract class Wood implements ICuttable<Wood> {
     if (this == obj) return true;
     if (!(obj instanceof Wood)) return false;
     Wood test = (Wood) obj;
-    return this.getShape().equals(test.getShape()) && this.getType() == test.getType() && this.isSmooth() == test.isSmooth();
+    return this.getShape().equals(test.getShape()) && this.getType() == test.getType();
   }
 
   /**
