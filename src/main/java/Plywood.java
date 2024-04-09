@@ -1,3 +1,13 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This class represents a sheet of plywood, which are flat layers of wood stacked on top of each
+ * other and glued together.
+ */
+
 public class Plywood extends Wood implements ICuttable<Wood> {
 
   /**

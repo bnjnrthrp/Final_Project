@@ -1,3 +1,12 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This class represents a MiterSaw, which can cut long, narrow boards
+ */
+
 public class MiterSaw extends Tool implements ICuttingTool {
   public MiterSaw(){
     super(Const.VALUE_TOOL_MITER_SAW);

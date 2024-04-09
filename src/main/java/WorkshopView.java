@@ -1,3 +1,13 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This class is the View of the MVC Viewer model of the workshop game. It displays everything in a
+ * grid and takes inputs based on text fields and buttons.
+ */
+
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -14,13 +24,20 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
   private JButton exitButton, goToWork, buyPlywood, buyDimensional, buyTool, buyJig, cutWood, makeFurniture;
   private JTextField inputTool, inputWood, inputJig, inputFurniture, inputDimension;
 
+  /**
+   * Constructor for the View. Creates the frame, sets the size, then initializes all of the buttons
+   * and listeners.
+   * @param caption
+   */
   public WorkshopView(String caption){
     super(caption);
 
+    // Initialize the frame
     setSize(1200, 800);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    // Initialize the 12 panels to be arranged
     JPanel accountPanel = new JPanel();
     JPanel toolDisplayPanel = new JPanel();
     JPanel jigDisplayPanel = new JPanel();
@@ -34,6 +51,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     JPanel createdFurniturePanel = new JPanel();
     JPanel exitPanel = new JPanel();
 
+    // Arrange the panels into a 3x4 grid
     this.setLayout(new GridLayout(3, 4, 0, 0));
 
     // Make all the labels
@@ -66,7 +84,6 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     woodDisplay = new JTextArea("Wood Inventory");
     woodDisplayPanel.add(woodDisplay);
 
-
     // Add store interface - ply and dimensional
     buyPlywood = new JButton("Buy Plywood");
     buyPlywood.setActionCommand("buyPlywood");
@@ -77,9 +94,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     storePanel.add(buyDimensional);
     storePanel.setLayout(new BoxLayout(storePanel, BoxLayout.Y_AXIS));
 
-
-    // buy tool
-    // input field tool
+    // Create buy tool panel
     buyToolPanel.add(chooseToolLabel);
     inputTool = new JTextField(2);
     buyToolPanel.add(inputTool);
@@ -87,16 +102,13 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     buyTool.setActionCommand("buyTool");
     buyToolPanel.add(buyTool);
 
-
     //buy Jig panel
-    // input field jig
     buyJigPanel.add(chooseJigLabel);
     inputJig = new JTextField(2);
     buyJigPanel.add(inputJig);
     buyJig = new JButton("Buy jig");
     buyJig.setActionCommand("buyJig");
     buyJigPanel.add(buyJig);
-
 
     //Use workshop panel
     workshopPanel.add(chooseWoodLabel);
@@ -109,13 +121,12 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     cutWood.setActionCommand("cutWood");
     workshopPanel.add(cutWood);
 
+    // Blueprint panel
     blueprintDisplay = new JTextArea("Furniture available to Make");
     blueprintDisplay.setLineWrap(true);
     blueprintDisplayPanel.add(blueprintDisplay);
 
-
-    //make furniture
-    // input field furniture
+    //make furniture panel
     makeFurniturePanel.add(chooseFurnitureLabel);
     inputFurniture = new JTextField(2);
     makeFurniturePanel.add(inputFurniture);
@@ -123,7 +134,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     makeFurniture.setActionCommand("makeFurniture");
     makeFurniturePanel.add(makeFurniture);
 
-    // made furniture display
+    // created furniture panel
     furnitureDisplay = new JTextArea("Made furniture");
     createdFurniturePanel.add(furnitureDisplay);
 
@@ -132,8 +143,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     exitButton.setActionCommand("exit");
     exitPanel.add(exitButton);
 
-    // pack();
-
+    // Add all the panels in the correct order
     this.add(accountPanel);
     this.add(toolDisplayPanel);
     this.add(jigDisplayPanel);
@@ -147,9 +157,14 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     this.add(createdFurniturePanel);
     this.add(exitPanel);
 
+    // Set the panel to visible
     setVisible(true);
   }
 
+  /**
+   * Sets all the listeners to connect actions to buttons.
+   * @param click
+   */
   @Override
   public void setListener(ActionListener click) {
     this.goToWork.addActionListener(click);
@@ -162,6 +177,11 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     this.exitButton.addActionListener(click);
   }
 
+  /**
+   * Gets the input from a given field.
+   * @param field the input field to get data from
+   * @return the integer from the data field.
+   */
   private int getInputField(JTextField field) {
 
     String input = field.getText();
@@ -171,36 +191,64 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     return Integer.parseInt(input);
   }
 
+  /**
+   * gets the input from the tool field
+   * @return the provided int.
+   */
   @Override
   public int getToolField(){
     return getInputField(inputTool);
   }
 
+  /**
+   * Gets the input from the jig field
+   * @return the provided int
+   */
   @Override
   public int getJigField(){
     return getInputField(inputJig);
   }
 
+  /**
+   * Gets the input from the wood field
+   * @return the provided int.
+   */
   @Override
   public int getWoodField(){
     return getInputField(inputWood);
   }
 
+  /**
+   * gets the input from the dimensions field
+   * @return the provided dimension
+   */
   @Override
   public double getDimensionField(){
     String input = inputDimension.getText();
     return Double.parseDouble(input);
   }
 
+  /**
+   * gets the input from the furniture field
+   * @return the provided input.
+   */
   @Override
   public int getFurnitureField(){
     return getInputField(inputFurniture);
   }
 
+  /**
+   * Sets all the inputs to a given string.
+   * @param field the input to set.
+   * @param s the string to insert.
+   */
   private void setInputField(JTextField field, String s){
     field.setText(s);
   }
 
+  /**
+   * Clears all the input fields to prepare it for the next set of data
+   */
   @Override
   public void clearInputFields() {
     setInputField(inputTool, "");
@@ -210,6 +258,15 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     setInputField(inputDimension, "");
   }
 
+  /**
+   * Shows all the data provided onto the display.
+   * @param number the account balance
+   * @param tools the list of tools
+   * @param jigs the list of jigs
+   * @param wood the list of wood
+   * @param furniture the list of furniture
+   * @param blueprints the list of blueprints
+   */
   @Override
   public void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood, ADTList<Furniture> furniture, ADTList<Furniture> blueprints) {
     this.accountDisplay.setText("Account Balance: " + Integer.toString(number));

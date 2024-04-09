@@ -1,10 +1,15 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ * This interface represents all the actions a View must be able to work in this MVC frame
+ */
+
 import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.JTextField;
 
 public interface IView<T> {
   void setListener(ActionListener listener);
-
 
   int getToolField();
 

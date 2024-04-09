@@ -1,3 +1,8 @@
+/**
+ * Benjamin Northrop
+ * CS5004 Final
+ * This class represents all the constants used throughout the program.
+ */
 public class Const {
   //Errors
   public static final String ERROR_NON_POSITIVE_MEASUREMENT = "Measurement cannot be negative.";

@@ -1,4 +1,9 @@
 /**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
  * This abstract class represents a generic jig, which is a tool that must be used in harmony with
  * another tool to make a job easier.
  */
@@ -52,6 +57,9 @@ public enum Jig implements IUnlockable {
     this.unlocked = true;
   }
 
+  /**
+   * @return the info of the jig, its value, and unlocked status
+   */
   @Override
   public String toString(){
     return "%s, Value: %d, Unlocked: %b\n".formatted(this.name(), this.getValue(), this.isUnlocked());

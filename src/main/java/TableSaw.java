@@ -1,4 +1,9 @@
 /**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
  * This class represents a tablesaw, which can cut rectangular pieces.
  * If used without a jig, it will always cut the side that has the longer dimension.
  * If used with a crosscut jig, it will always cut the side that has the shorter dimension

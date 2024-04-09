@@ -1,3 +1,11 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ * This interface represents the actions available to a Node in an abstract linked list ADT
+ */
+
 import java.util.function.Function;
 import java.util.function.Predicate;
 

@@ -1,3 +1,11 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This class represents a piece of dimensional wood, which is what we imagine as a 2x4.
+ */
 public class DimensionalWood extends Wood {
 
   /**
@@ -36,15 +44,14 @@ public class DimensionalWood extends Wood {
     double[] dimensions = this.getShape().getDimensions();
     // Create a copy of the original board
     DimensionalWood newPiece = new DimensionalWood(dimensions);
-    // Insert the original piece into the front
+    // Create the return list
     ADTList<Wood> pieces = new ADTList<>();
-//    pieces.add(this);
 
     // Try to cut the first board to size.
     try {
       this.getShape().setSingleDimension(sideIndex, newDimension);
     } catch (IllegalArgumentException e){
-      // Return the original piece with no change if the cut fails
+      // Return an empty list if the original cannot be cut.
       return pieces;
     }
 
@@ -52,8 +59,7 @@ public class DimensionalWood extends Wood {
     double originalSize = newPiece.getShape().getSingleDimension(sideIndex);
     // Adjust the size of the newPiece to complement the original
     newPiece.getShape().setSingleDimension(sideIndex, originalSize - newDimension);
-
-    // Add to the ADTList and return it.
+    // Add the cutoff piece to the ADTList and return it.
     pieces.add(newPiece);
     return pieces;
   }

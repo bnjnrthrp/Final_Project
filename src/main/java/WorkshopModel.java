@@ -1,5 +1,16 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ */
+
 import java.util.Arrays;
 
+/**
+ * This class is the Model of the MVC workshop. It holds all the data and provides all the functionality
+ * to be called by the controller based on user inputs.
+ */
 public class WorkshopModel implements IModel {
   private int balance;
   private ADTList<Wood> woodInventory;
@@ -8,6 +19,10 @@ public class WorkshopModel implements IModel {
   private ADTList<Furniture> furniture;
   private ADTList<Furniture> blueprints;
 
+  /**
+   * Constructor for a workshop model. It will hold the instance variables which contain the various
+   * bits of data that the user interacts with. *
+   */
   public WorkshopModel(){
     this.balance = 0;
     this.woodInventory = new ADTList<Wood>();
@@ -26,6 +41,10 @@ public class WorkshopModel implements IModel {
     this.addMoney(100);
   }
 
+  /**
+   * gets the account balance of the model
+   * @return the account balance.
+   */
   @Override
   public int getBalance(){
     return this.balance;
@@ -44,6 +63,11 @@ public class WorkshopModel implements IModel {
     }
   }
 
+  /**
+   * Subtracts money from the account
+   * @param amount the amount to remove
+   * @throws IllegalArgumentException if the amount is negative.
+   */
   private void subtractMoney(int amount) throws IllegalArgumentException{
     if (amount < 0) {
       throw new IllegalArgumentException(Const.ERROR_NON_POSITIVE_VALUE);
@@ -85,6 +109,11 @@ public class WorkshopModel implements IModel {
     }
   }
 
+  /**
+   * Gets the piece of wood at a given index from the wood inventory.
+   * @param index the index within the inventory of the desired item
+   * @return the desired piece of wood.
+   */
   public Wood getWood(int index){
     return this.woodInventory.get(index);
   }
@@ -254,6 +283,10 @@ public class WorkshopModel implements IModel {
     return this.jigs;
   }
 
+  /**
+   * Gets the list of blueprints that are available to the user.
+   * @return an ADTList of all the blueprints in the Furniture enum.
+   */
   @Override
   public ADTList<Furniture> getBlueprints(){
     return this.blueprints;

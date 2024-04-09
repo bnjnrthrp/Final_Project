@@ -1,23 +1,39 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ * This class is the controller for the MVC workshop model. It sets up the model, then listens for
+ * inputs from the view to interact with the model.
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Scanner;
-import java.io.InputStream;
+
 
 public class WorkshopController implements IController, ActionListener {
   private final IView view;
   private final IModel model;
 
+  /**
+   * Constructor for a Workshop controller. Takes in a model and view object, then sets the listeners
+   * @param model
+   * @param viewer
+   */
   public WorkshopController(IModel model, IView viewer) {
     this.model = model;
     this.view = viewer;
     view.setListener(this);
   }
 
+  /**
+   * Starts the program by having the model load everything up then displaying the data to the user.
+   */
   public void go() {
+    // Initialize all of the items/tools/jigs
     model.loadWorkshop();
 
+    // Get the current status of the instance variables and display them.
     view.showAll(
         model.getBalance(),
         model.getTools(),

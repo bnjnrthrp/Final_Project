@@ -1,3 +1,11 @@
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This class represents an empty node in a custom ADTList.
+ */
 import java.util.function.Function;
 import java.util.function.Predicate;
 

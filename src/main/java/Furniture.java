@@ -1,4 +1,11 @@
-import java.util.ArrayList;
+/**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
+ * This enum contains the names of various pieces of furniture that may be built in the program.
+ */
 
 /** This enum contains the various names of furniture that may be built */
 public enum Furniture {

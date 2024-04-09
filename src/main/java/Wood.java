@@ -1,4 +1,9 @@
 /**
+ * Benjamin Northrop
+ * CS5004
+ * Final Project
+ * SP2024
+ *
  * This class represents wood to be used for carpentry. It has a shape, which contains its
  * dimensions, and it also contains a type. In future expansion, the type of wood can have an impact
  * on how difficult it is to work with (soft vs hard woods) and what furniture can be made.
@@ -7,6 +12,10 @@ public abstract class Wood implements ICuttable<Wood> {
   protected Shape shape;
   protected final WoodType type;
 
+  /**
+   * Basic constructor for a piece of wood.
+   * @param type The type of wood from the WoodType enum.
+   */
   public Wood(WoodType type){
     this.type = type;
   }
@@ -30,10 +39,6 @@ public abstract class Wood implements ICuttable<Wood> {
     return this.type;
   }
 
-  public void setShape(Shape shape){
-    this.shape = shape;
-  }
-
   /**
    * Getter for the Shape
    * @return this object's WoodType
@@ -42,8 +47,22 @@ public abstract class Wood implements ICuttable<Wood> {
     return this.shape;
   }
 
+  /**
+   * Abstract function to give functionality of cutting a piece of wood. Behavior will vary depending on the
+   * type of wood being cut.
+   * @param sideIndex the side (dimension) of the wood to cut
+   * @param newDimension the new dimension
+   * @param accurate if the cut is accurate or not (currently unused)
+   * @return an ADTList with the remaining piece of wood.
+   */
   public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate);
 
+  /**
+   * Determines equality between two pieces of wood.
+   * To be equal, it must be of the same type, and exact same dimensions (to ensure equal grain direction).
+   * @param obj the object to compare
+   * @return true if the wood is the same.
+   */
   @Override
   public boolean equals(Object obj){
     if (obj == null || this.getClass() != obj.getClass()) return false;
