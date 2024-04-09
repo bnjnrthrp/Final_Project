@@ -61,4 +61,5 @@ public enum Furniture {
   public ADTList<Wood> getComponents(){
     return this.components;
   }
+
 }

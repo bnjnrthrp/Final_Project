@@ -171,11 +171,11 @@ public class WorkshopController implements IController, ActionListener {
         int woodIndex = view.getWoodField();
         int toolIndex = view.getToolField();
         double dim = view.getDimensionField();
-        try {
-          int jigIndex = view.getJigField();
-          model.cutWood(woodIndex, toolIndex, jigIndex, dim);
-        } catch (NullPointerException n){
+        int jigIndex = view.getJigField();
+        if (jigIndex == -1){
           model.cutWood(woodIndex, toolIndex, dim);
+        } else{
+          model.cutWood(woodIndex, toolIndex, jigIndex, dim);
         }
         break;
       }

@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 public class JFrameView<T> extends JFrame implements IView<T>{
   private JLabel display, accountDisplay;
   private JTextArea toolDisplay, jigDisplay, woodDisplay, furnitureDisplay;;
-  private JButton exitButton, goToWork, buyWood, buyDimensional, buyTool, buyJig, cutWood, makeFurniture;
+  private JButton exitButton, goToWork, buyPlywood, buyDimensional, buyTool, buyJig, cutWood, makeFurniture;
   private JTextField inputTool, inputWood, inputJig, inputFurniture, inputDimension;
 
   public JFrameView(String caption){
@@ -62,9 +62,9 @@ public class JFrameView<T> extends JFrame implements IView<T>{
 
 
     // Add store interface - ply and dimensional
-    buyWood = new JButton("Buy Plywood");
-    buyWood.setActionCommand("buyPlywood");
-    storePanel.add(buyWood);
+    buyPlywood = new JButton("Buy Plywood");
+    buyPlywood.setActionCommand("buyPlywood");
+    storePanel.add(buyPlywood);
     //buy dimensional
     buyDimensional = new JButton("Buy dimensional (2x4)");
     buyDimensional.setActionCommand("buyDimensional");
@@ -152,17 +152,21 @@ public class JFrameView<T> extends JFrame implements IView<T>{
   @Override
   public void setListener(ActionListener click) {
     this.goToWork.addActionListener(click);
-    this.exitButton.addActionListener(click);
-    this.buyWood.addActionListener(click);
-    this.buyWood.addActionListener(click);
+    this.buyPlywood.addActionListener(click);
     this.buyDimensional.addActionListener(click);
     this.buyTool.addActionListener(click);
     this.buyJig.addActionListener(click);
+    this.cutWood.addActionListener(click);
     this.makeFurniture.addActionListener(click);
+    this.exitButton.addActionListener(click);
   }
 
   private int getInputField(JTextField field) {
+
     String input = field.getText();
+    if (input.isBlank()){
+      return -1;
+    }
     return Integer.parseInt(input);
   }
 
