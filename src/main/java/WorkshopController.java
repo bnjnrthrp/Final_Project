@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
 
 
 public class WorkshopController implements IController, ActionListener {
-  private final IView view;
-  private final IModel model;
+  private IView view;
+  private IModel model;
 
   /**
    * Constructor for a Workshop controller. Takes in a model and view object, then sets the listeners

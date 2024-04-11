@@ -26,8 +26,6 @@ public class ADTList<T> {
     this.head = data;
   }
 
-
-
   /**
    * Adds to the back of the linked list.
    *
