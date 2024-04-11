@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  *
  * @param <T> The generic type to fill the nodes
  */
-public class ADTList<T> {
+public class ADTList<T> implements IADT<T> {
   private INode<T> head;
 
   /** No argument constructor constructs a basic list, with just an empty Node */
@@ -31,6 +31,7 @@ public class ADTList<T> {
    *
    * @param data the data to add to the list.
    */
+  @Override
   public void add(T data) {
     this.head = this.head.addBack(data);
   }
@@ -41,6 +42,7 @@ public class ADTList<T> {
    * @param data the data to add to the list
    * @param index the index at which to add to the list
    */
+  @Override
   public void add(T data, int index) throws IllegalArgumentException{
     if (index < 0 || index > this.count()){
       throw new IllegalArgumentException("index out of range");
@@ -73,6 +75,7 @@ public class ADTList<T> {
    * @return the data contained within the node
    * @throws IllegalArgumentException if the index exceeds the size of the list, or < 0
    */
+  @Override
   public T get(int index) throws IllegalArgumentException {
     if (index < 0 || index > this.count()) {
       throw new IllegalArgumentException("Invalid index");
@@ -85,6 +88,7 @@ public class ADTList<T> {
    * Appends the provided list to the back of this current list.
    * @param list the list to add to the tail of this list
    */
+  @Override
   public void addAll(ADTList<T> list) {this.head.addAll(list.head);}
 
   /**
@@ -92,6 +96,7 @@ public class ADTList<T> {
    *
    * @param data the identifiable data to delete from the linked list.
    */
+  @Override
   public void remove(T data) {
     this.head = this.head.remove(data);
   }
@@ -102,6 +107,7 @@ public class ADTList<T> {
    * @return the removed task Node
    * @throws IndexOutOfBoundsException if the index is <0
    */
+  @Override
   public void remove(int index){
     this.head = this.head.remove(index);
   }
@@ -111,6 +117,7 @@ public class ADTList<T> {
    *
    * @return int, the size of the list.
    */
+  @Override
   public int count() {
     return this.head.count();
   }
@@ -120,6 +127,7 @@ public class ADTList<T> {
    * @param tester The predicate function to test the list
    * @return int, the number of items that match the criteria.
    */
+  @Override
   public int count(Predicate<T> tester){
     return this.head.count(tester);
   }
@@ -130,6 +138,7 @@ public class ADTList<T> {
    * @param tester Predicate, the test to filter the nodes by
    * @return a new ADT list
    */
+  @Override
   public <T> ADTList<T> filter(Predicate<T> tester) {
     return new ADTList<T>(this.head.filter(tester));
   }
@@ -141,6 +150,7 @@ public class ADTList<T> {
    * @return a List of type R
    * @param <R> The return type of the converted list
    */
+  @Override
   public <R> ADTList<R> map(Function<T,R> converter){
     return new ADTList(head.map(converter));
   };

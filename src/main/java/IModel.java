@@ -74,21 +74,21 @@ public interface IModel {
    *
    * @return the created furniture inventory
    */
-  ADTList<Furniture> getFurniture();
+  IADT<Furniture> getFurniture();
 
   /**
    * Returns an ADTList of the wood inventory in the shop
    *
    * @return the wood inventory
    */
-  ADTList<Wood> getWoodInventory();
+  IADT<Wood> getWoodInventory();
 
   /**
    * Returns an ADTList with the tool inventory of the shop, and their unlocked status.
    *
    * @return the tool inventory
    */
-  ADTList<Tool> getTools();
+  IADT<Tool> getTools();
 
   /**
    * Gets the specified tool via an index
@@ -103,7 +103,7 @@ public interface IModel {
    *
    * @return the jig inventory
    */
-  ADTList<Jig> getJigs();
+  IADT<Jig> getJigs();
 
   /**
    * Returns a specific jig from an index
@@ -119,6 +119,6 @@ public interface IModel {
    *
    * @return the blueprint inventory
    */
-  ADTList<Furniture> getBlueprints();
+  IADT<Furniture> getBlueprints();
 
 }

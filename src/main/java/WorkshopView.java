@@ -277,7 +277,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
    * @param blueprints the list of blueprints
    */
   @Override
-  public void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood, ADTList<Furniture> furniture, ADTList<Furniture> blueprints) {
+  public void showAll(int number, IADT<Tool> tools, IADT<Jig> jigs, IADT<Wood> wood, IADT<Furniture> furniture, IADT<Furniture> blueprints) {
     this.accountDisplay.setText("Account Balance: " + Integer.toString(number));
     this.toolDisplay.setText("Tools: \n" + tools);
     this.jigDisplay.setText("Jigs: \n" + jigs.toString());

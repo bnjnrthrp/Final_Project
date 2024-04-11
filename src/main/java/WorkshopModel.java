@@ -13,11 +13,11 @@ import java.util.Arrays;
  */
 public class WorkshopModel implements IModel {
   private int balance;
-  private ADTList<Wood> woodInventory;
-  private ADTList<Tool> tools;
-  private ADTList<Jig> jigs;
-  private ADTList<Furniture> furniture;
-  private ADTList<Furniture> blueprints;
+  private IADT<Wood> woodInventory;
+  private IADT<Tool> tools;
+  private IADT<Jig> jigs;
+  private IADT<Furniture> furniture;
+  private IADT<Furniture> blueprints;
 
   /**
    * Constructor for a workshop model. It will hold the instance variables which contain the various
@@ -143,7 +143,7 @@ public class WorkshopModel implements IModel {
    */
   @Override
   public void cutWood(int woodIndex, int toolIndex, double newSize) {
-        ICuttingTool tool = this.getTools(toolIndex);
+        ICuttingTool tool = (ICuttingTool) this.getTools(toolIndex);
     try {
       woodInventory.addAll(tool.cut(woodInventory.get(woodIndex), newSize));
     } catch (IllegalArgumentException | IllegalStateException e) {
@@ -163,7 +163,8 @@ public class WorkshopModel implements IModel {
   @Override
   public void cutWood(int woodIndex, int toolIndex, int jigIndex, double newSize) {
     // Get the indices for the tools and jig
-    ICuttingTool tool = this.getTools(toolIndex);
+    // Type conversion to ICuttingTool to ensure we grabbed a saw of some sort.
+    ICuttingTool tool = (ICuttingTool) this.getTools(toolIndex);
     Jig jig = this.getJigs(jigIndex);
 
     // Attempt to cut the wood and add the remainder to the inventory.
@@ -242,7 +243,7 @@ public class WorkshopModel implements IModel {
    * @return an ADTList of furniture
    */
   @Override
-  public ADTList<Furniture> getFurniture(){return this.furniture;}
+  public IADT<Furniture> getFurniture(){return this.furniture;}
 
   /**
    * Returns an Arraylist of the wood inventory in the shop
@@ -250,7 +251,7 @@ public class WorkshopModel implements IModel {
    * @return the wood inventory
    */
   @Override
-  public ADTList<Wood> getWoodInventory() {
+  public IADT<Wood> getWoodInventory() {
     return this.woodInventory;
   }
 
@@ -260,7 +261,7 @@ public class WorkshopModel implements IModel {
    * @return the tool inventory
    */
   @Override
-  public ADTList<Tool> getTools() {
+  public IADT<Tool> getTools() {
     return this.tools;
   }
 
@@ -279,7 +280,7 @@ public class WorkshopModel implements IModel {
    * @return the jig inventory
    */
   @Override
-  public ADTList<Jig> getJigs() {
+  public IADT<Jig> getJigs() {
     return this.jigs;
   }
 
@@ -288,7 +289,7 @@ public class WorkshopModel implements IModel {
    * @return an ADTList of all the blueprints in the Furniture enum.
    */
   @Override
-  public ADTList<Furniture> getBlueprints(){
+  public IADT<Furniture> getBlueprints(){
     return this.blueprints;
   }
 

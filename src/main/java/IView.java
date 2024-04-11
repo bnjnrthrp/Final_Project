@@ -26,6 +26,6 @@ public interface IView<T> {
 
   void clearInputFields();
 
-  void showAll(int number, ADTList<Tool> tools, ADTList<Jig> jigs, ADTList<Wood> wood,
-      ADTList<Furniture> furniture, ADTList<Furniture> blueprints);
+  void showAll(int number, IADT<Tool> tools, IADT<Jig> jigs, IADT<Wood> wood,
+      IADT<Furniture> furniture, IADT<Furniture> blueprints);
 }
