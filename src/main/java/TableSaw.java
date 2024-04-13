@@ -46,7 +46,7 @@ public class TableSaw extends Tool implements ICuttingTool {
     if (dims[1] > dims[0]){ // If the width is longer, then we cut the length down.
       sideToCut = 0;
     }
-    return wood.cut(sideToCut, size, true);
+    return wood.cut(sideToCut, size);
   }
 
   /**
@@ -74,6 +74,6 @@ public class TableSaw extends Tool implements ICuttingTool {
       sideToCut = 1;
     }
     // Throw error if incompatible jig
-    return wood.cut(sideToCut, size, true);
+    return wood.cut(sideToCut, size);
   }
 }

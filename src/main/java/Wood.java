@@ -52,10 +52,9 @@ public abstract class Wood implements ICuttable<Wood> {
    * type of wood being cut.
    * @param sideIndex the side (dimension) of the wood to cut
    * @param newDimension the new dimension
-   * @param accurate if the cut is accurate or not (currently unused)
    * @return an ADTList with the remaining piece of wood.
    */
-  public abstract ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate);
+  public abstract ADTList<Wood> cut(int sideIndex, double newDimension);
 
   /**
    * Determines equality between two pieces of wood.

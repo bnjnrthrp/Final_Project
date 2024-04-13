@@ -42,12 +42,23 @@ public class MiterSawTest {
   public void testCut() {
     double[] param1 = {49, 4, 2};
     double[] param2 = {47, 4, 2};
+    Jig.tapeMeasure.unlock();
     DimensionalWood expected1 = new DimensionalWood(param1);
     DimensionalWood expected2 = new DimensionalWood(param2);
-    inventory.addAll(miterSaw.cut(inventory.get(1), 49.0));
+    inventory.addAll(miterSaw.cut(inventory.get(1), Jig.tapeMeasure, 49.0));
 
     assertEquals(expected1, inventory.get(1));
     assertEquals(expected2, inventory.get(3));
+  }
+
+  @Test
+  public void testCutNoInaccurate(){
+    // Cuts a piece of wood inaccurately, so should not get an accurate return.
+    // This test will pass as long as the cut returns something that is within 1.0, but will
+    // SOMETIMES fail if the random generator returned 0.
+    miterSaw.cut(inventory.get(1), 49);
+    assertEquals(49.0, inventory.get(1).getShape().getSingleDimension(0),1.0);
+    assertNotEquals(49.0, inventory.get(1).getShape().getSingleDimension(0));
   }
 
   @Test

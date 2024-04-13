@@ -37,11 +37,10 @@ public class Plywood extends Wood implements ICuttable<Wood> {
    * Resizes (or reshape) the wood into one with new dimensions.
    * @param sideIndex the dimension index we are adjusting
    * @param newDimension the new size of that dimension
-   * @param accurate determines if accurate cut or not
    * @return the completed piece of wood
    * @throws IllegalStateException if the new dimension exceeds the original piece of wood
    */
-  public ADTList<Wood> cut(int sideIndex, double newDimension, boolean accurate){
+  public ADTList<Wood> cut(int sideIndex, double newDimension){
     // Get data from original and store as temp
     double[] dimensions = this.getShape().getDimensions();
     // Create a copy and insert it into the second slot

@@ -6,10 +6,17 @@
  *
  * This class represents a MiterSaw, which can cut long, narrow boards
  */
+import java.util.Random;
 
 public class MiterSaw extends Tool implements ICuttingTool {
   public MiterSaw(){
     super(Const.VALUE_TOOL_MITER_SAW);
+  }
+
+  private double adjustDimension(double dim){
+    Random r = new Random();
+    double fudge_factor = r.nextDouble(-1, 1); // Add an error +- 1 inch
+    return dim + fudge_factor;
   }
 
   /**
@@ -23,7 +30,8 @@ public class MiterSaw extends Tool implements ICuttingTool {
     if (!compatible(wood)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
-    return wood.cut(0, size, false);
+    // Did not use tape measure jig, so adjust the size
+    return wood.cut(0, adjustDimension(size));
   }
 
   /**
@@ -39,7 +47,8 @@ public class MiterSaw extends Tool implements ICuttingTool {
     if (!compatible(wood, jig)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
-    return wood.cut(0, size, true);
+    // Used tape measure, so cut is accurate
+    return wood.cut(0, size);
   }
 
   /**
@@ -53,7 +62,7 @@ public class MiterSaw extends Tool implements ICuttingTool {
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
     }
     double[] params = template.getShape().getDimensions();
-    return wood.cut(0, params[0], true);
+    return wood.cut(0, params[0]);
   }
 
   /**
