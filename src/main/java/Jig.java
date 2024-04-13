@@ -51,10 +51,14 @@ public enum Jig implements IUnlockable {
    * Changes the jig's status from locked to unlocked.
    */
   public void unlock(){
-    if (this.isUnlocked()){
-      return;
-    }
     this.unlocked = true;
+  }
+
+  /**
+   * Changes the jig's status from locked to unlocked.
+   */
+  public void lock(){
+    this.unlocked = false;
   }
 
   /**

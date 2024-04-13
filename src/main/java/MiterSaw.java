@@ -45,7 +45,9 @@ public class MiterSaw extends Tool implements ICuttingTool {
   @Override
   public ADTList<Wood> cut(Wood wood, Jig jig, double size) {
     if (!compatible(wood, jig)){
-      throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_WOOD);
+      // Break the jig and throw an argument
+      jig.lock();
+      throw new IllegalArgumentException(Const.ERROR_BROKEN_JIG);
     }
     // Used tape measure, so cut is accurate
     return wood.cut(0, size);

@@ -65,7 +65,8 @@ public class TableSaw extends Tool implements ICuttingTool {
     if (!isCompatible(wood)){
       throw new IllegalArgumentException(Const.ERROR_INCOMPATIBLE_CUTTABLE_SHAPE);
     } else if (jig != Jig.crossCutSled){
-      throw new IllegalStateException(Const.ERROR_INCOMPATIBLE_JIG);
+      jig.lock();
+      throw new IllegalStateException(Const.ERROR_BROKEN_JIG);
     }
 
     double[] dims = wood.getShape().getDimensions();

@@ -8,6 +8,7 @@
  * grid and takes inputs based on text fields and buttons.
  */
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -75,14 +76,17 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     // Add to tool panel
     toolDisplay = new JTextArea("Tool Inventory:");
     toolDisplay.setLineWrap(true);
+    toolDisplay.setPreferredSize(new Dimension(250, 250));
     toolDisplayPanel.add(toolDisplay);
 
     // Add jig display
     jigDisplay = new JTextArea("Jig Inventory");
+    jigDisplay.setPreferredSize(new Dimension(250, 250));
     jigDisplayPanel.add(jigDisplay);
 
     // Add wood display
     woodDisplay = new JTextArea("Wood Inventory");
+    woodDisplay.setPreferredSize(new Dimension(250, 250));
     woodDisplayPanel.add(woodDisplay);
 
     // Add store interface - ply and dimensional
@@ -125,6 +129,7 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
     // Blueprint panel
     blueprintDisplay = new JTextArea("Furniture available to Make");
     blueprintDisplay.setLineWrap(true);
+    blueprintDisplay.setPreferredSize(new Dimension(250, 250));
     blueprintDisplayPanel.add(blueprintDisplay);
     blueprintDisplayPanel.add(chooseFurnitureLabel);
     inputFurniture = new JTextField(2);
@@ -135,11 +140,13 @@ public class WorkshopView<T> extends JFrame implements IView<T>{
 
     // created furniture panel
     furnitureDisplay = new JTextArea("Made furniture");
+    furnitureDisplay.setPreferredSize(new Dimension(250, 250));
     createdFurniturePanel.add(furnitureDisplay);
 
     //make furniture panel
     messageDisplay = new JTextArea("Message");
     messageDisplay.setLineWrap(true);
+    messageDisplay.setPreferredSize(new Dimension(250, 250));
     messagePanel.add(messageDisplay);
 
     //exit button

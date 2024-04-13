@@ -16,6 +16,7 @@ public class Const {
   public static final String ERROR_INCOMPATIBLE_WOOD = "This wood isn't compatible with this tool";
   public static final String ERROR_TOOL_LOCKED = "This item is still locked";
   public static final String ERROR_INSUFFICIENT_FUNDS = "Not enough funds in account balance";
+  public static final String ERROR_BROKEN_JIG = "Oh no! This jig wasn't compatible and broke";
 
   //Standard Dimensions
   public static final double LENGTH_PLYWOOD = 96;
